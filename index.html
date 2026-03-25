@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -1063,51 +1065,56 @@ function goBack(){
   updateProgress();
 }
 
-async function submitEmail(){
-  const first=document.getElementById('f-first').value.trim();
-  const last=document.getElementById('f-last').value.trim();
-  const email=document.getElementById('f-email').value.trim();
-  const err=document.getElementById('err-msg');
-  const load=document.getElementById('loading-msg');
+function submitEmail(){
+  var first=document.getElementById('f-first').value.trim();
+  var last=document.getElementById('f-last').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var err=document.getElementById('err-msg');
+  var load=document.getElementById('loading-msg');
   if(!email||!email.includes('@')){err.style.display='block';return;}
-  err.style.display='none';load.style.display='block';
+  err.style.display='none';
+  load.style.display='block';
   document.querySelector('.btn-reveal').disabled=true;
-  const arch=archetypes[getArchetype()];
-  try{
-    await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=StQHsM',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','revision':'2023-02-22'},
-      body:JSON.stringify({data:{type:'subscription',attributes:{
-        list_id:'XTRJZ4',
-        custom_source:'Scent Quiz',
-        email,
-        properties:{
-          first_name: first,
-          last_name: last,
-          scent_profile: `${arch.em}`,
-          scent_tagline: arch.tagline,
-          scent_desc: arch.desc,
-          scent_traits: arch.traits.join(', '),
-          rec_1_name: arch.recs[0] ? (products.find(p=>p.id===arch.recs[0])||{}).name||'' : '',
-          rec_1_type: arch.recs[0] ? (products.find(p=>p.id===arch.recs[0])||{}).type||'' : '',
-          rec_1_url: arch.recs[0] ? (products.find(p=>p.id===arch.recs[0])||{}).url||'' : '',
-          rec_1_bottles: arch.recs[0] ? ((products.find(p=>p.id===arch.recs[0])||{}).bottles||[]).map(b=>`${b.house} – ${b.name}`).join(', ') : '',
-          rec_2_name: arch.recs[1] ? (products.find(p=>p.id===arch.recs[1])||{}).name||'' : '',
-          rec_2_type: arch.recs[1] ? (products.find(p=>p.id===arch.recs[1])||{}).type||'' : '',
-          rec_2_url: arch.recs[1] ? (products.find(p=>p.id===arch.recs[1])||{}).url||'' : '',
-          rec_2_bottles: arch.recs[1] ? ((products.find(p=>p.id===arch.recs[1])||{}).bottles||[]).map(b=>`${b.house} – ${b.name}`).join(', ') : '',
-          rec_3_name: arch.recs[2] ? (products.find(p=>p.id===arch.recs[2])||{}).name||'' : '',
-          rec_3_type: arch.recs[2] ? (products.find(p=>p.id===arch.recs[2])||{}).type||'' : '',
-          rec_3_url: arch.recs[2] ? (products.find(p=>p.id===arch.recs[2])||{}).url||'' : '',
-          rec_3_bottles: arch.recs[2] ? ((products.find(p=>p.id===arch.recs[2])||{}).bottles||[]).map(b=>`${b.house} – ${b.name}`).join(', ') : '',
-          quiz_source: 'Date the Fragrance Quiz'
-        }
-      }}})
-    });
-  }catch(e){console.log('Klaviyo:',e)}
-  load.style.display='none';
-  buildResults(first,arch);
-  showScreen('screen-results');
+  var arch=archetypes[getArchetype()];
+  var gp=function(id){return products.find(function(p){return p.id===id;})||{};};
+  var gb=function(id){var p=gp(id);return (p.bottles||[]).map(function(b){return b.house+' - '+b.name;}).join(', ');};
+  var data={
+    data:{type:'subscription',attributes:{
+      list_id:'XTRJZ4',
+      custom_source:'Scent Quiz',
+      email:email,
+      properties:{
+        first_name:first,last_name:last,
+        scent_profile:arch.em,scent_tagline:arch.tagline,
+        scent_desc:arch.desc,scent_traits:arch.traits.join(', '),
+        rec_1_name:arch.recs[0]?gp(arch.recs[0]).name||'':'',
+        rec_1_type:arch.recs[0]?gp(arch.recs[0]).type||'':'',
+        rec_1_url:arch.recs[0]?gp(arch.recs[0]).url||'':'',
+        rec_1_bottles:arch.recs[0]?gb(arch.recs[0]):'',
+        rec_2_name:arch.recs[1]?gp(arch.recs[1]).name||'':'',
+        rec_2_type:arch.recs[1]?gp(arch.recs[1]).type||'':'',
+        rec_2_url:arch.recs[1]?gp(arch.recs[1]).url||'':'',
+        rec_2_bottles:arch.recs[1]?gb(arch.recs[1]):'',
+        rec_3_name:arch.recs[2]?gp(arch.recs[2]).name||'':'',
+        rec_3_type:arch.recs[2]?gp(arch.recs[2]).type||'':'',
+        rec_3_url:arch.recs[2]?gp(arch.recs[2]).url||'':'',
+        rec_3_bottles:arch.recs[2]?gb(arch.recs[2]):'',
+        quiz_source:'Date the Fragrance Quiz'
+      }
+    }}
+  };
+  var xhr=new XMLHttpRequest();
+  xhr.open('POST','https://a.klaviyo.com/client/subscriptions/?company_id=StQHsM',true);
+  xhr.setRequestHeader('Content-Type','application/json');
+  xhr.setRequestHeader('revision','2023-02-22');
+  xhr.onreadystatechange=function(){
+    if(xhr.readyState===4){
+      load.style.display='none';
+      buildResults(first,arch);
+      showScreen('screen-results');
+    }
+  };
+  xhr.send(JSON.stringify(data));
 }
 
 function retake(){
@@ -1122,4 +1129,3 @@ function retake(){
 
 </body>
 </html>
-
