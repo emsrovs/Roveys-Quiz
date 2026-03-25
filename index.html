@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Date the Fragrance; Roveys</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@200;300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --white:#FAFAF8;
+  --cream:#F5F2EC;
+  --navy:#1C1830;
+  --purple:#5B4789;
+  --purple-light:#8B72B8;
+  --purple-pale:#EDE8F5;
+  --purple-mist:#F7F4FC;
+  --gold:#C4A882;
+  --gold-dark:#A8895E;
+  --text:#1C1830;
+  --text-mid:#5B4789;
+  --text-soft:#9B90B0;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Raleway',sans-serif;
+}
+
+html,body{min-height:100%;background:var(–white);color:var(–text);font-family:var(–sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ─── FLOATING BOTTLES CANVAS ─── */
+.bottles-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+
+@keyframes bubbleRise{
+0%{
+transform: translateY(0) translateX(0) scale(1);
+opacity: 0;
+}
+5%{ opacity: 0.9; }
+20%{ transform: translateY(-20vh) translateX(calc(var(–sway) * 0.5)) scale(1.01); }
+40%{ transform: translateY(-40vh) translateX(calc(var(–sway) * -0.7)) scale(0.99); opacity: 0.85; }
+60%{ transform: translateY(-58vh) translateX(calc(var(–sway) * 0.4)) scale(1.02); }
+80%{ transform: translateY(-78vh) translateX(calc(var(–sway) * -0.3)) scale(0.98); opacity: 0.7; }
+95%{ opacity: 0.2; }
+100%{
+transform: translateY(-108vh) translateX(calc(var(–sway) * 0.2)) scale(0.95);
+opacity: 0;
+}
+}
+
+/* ─── GRAIN OVERLAY ─── */
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0.025;background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’/%3E%3C/svg%3E”);background-size:200px}
+
+/* ─── BANNER ─── */
+.top-banner{position:relative;z-index:20;background:var(–navy);color:rgba(255,255,255,0.75);text-align:center;padding:11px 20px;font-size:0.58rem;letter-spacing:0.26em;text-transform:uppercase;font-weight:300;line-height:1.5}
+.top-banner strong{color:var(–gold);font-weight:400}
+
+/* ─── NAV ─── */
+.nav-bar{position:relative;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:22px 40px;background:var(–white);border-bottom:1px solid rgba(91,71,137,0.1)}
+.nav-logo{font-family:var(–sans);font-weight:300;letter-spacing:0.42em;font-size:0.95rem;color:var(–navy);text-transform:uppercase;text-decoration:none}
+.nav-link{font-family:var(–sans);font-weight:300;letter-spacing:0.22em;font-size:0.6rem;color:var(–text-soft);text-transform:uppercase;text-decoration:none;transition:color 0.2s}
+.nav-link:hover{color:var(–navy)}
+
+/* ─── APP SHELL ─── */
+#app{position:relative;z-index:10;max-width:720px;margin:0 auto;padding:0 32px 120px}
+.screen{display:none}
+.screen.active{display:block}
+
+/* ─── INTRO ─── */
+#screen-intro{padding-top:72px}
+.intro-flag{display:flex;align-items:center;gap:14px;margin-bottom:28px;animation:fadeUp 0.8s ease forwards;opacity:0}
+.intro-flag-line{height:1px;width:40px;background:var(–gold)}
+.intro-flag-text{font-family:var(–sans);font-size:0.56rem;letter-spacing:0.32em;text-transform:uppercase;color:var(–gold);font-weight:300}
+
+.intro-title{font-family:var(–serif);font-weight:300;font-size:clamp(3.5rem,12vw,7rem);line-height:0.92;color:var(–navy);margin-bottom:6px;animation:fadeUp 0.8s 0.1s ease forwards;opacity:0}
+.intro-title em{display:block;font-style:italic;color:var(–purple);font-weight:300}
+
+.intro-rule{display:flex;align-items:center;gap:16px;margin:28px 0;animation:fadeUp 0.8s 0.2s ease forwards;opacity:0}
+.intro-rule-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(91,71,137,0.2),transparent)}
+.intro-rule-diamond{width:6px;height:6px;background:var(–gold);transform:rotate(45deg);flex-shrink:0}
+
+.intro-body{font-family:var(–sans);font-weight:300;font-size:0.95rem;line-height:1.85;color:#666;max-width:440px;margin-bottom:20px;animation:fadeUp 0.8s 0.3s ease forwards;opacity:0}
+.intro-body-two{font-family:var(–serif);font-style:italic;font-size:1.05rem;line-height:1.75;color:var(–purple);max-width:440px;margin-bottom:44px;animation:fadeUp 0.8s 0.4s ease forwards;opacity:0}
+
+.btn-discover{position:relative;display:inline-flex;align-items:center;gap:16px;background:var(–navy);color:#fff;font-family:var(–sans);font-weight:300;letter-spacing:0.3em;font-size:0.62rem;text-transform:uppercase;border:none;cursor:pointer;padding:20px 48px 20px 40px;animation:fadeUp 0.8s 0.4s ease forwards;opacity:0;transition:all 0.35s ease;overflow:hidden}
+.btn-discover::before{content:’’;position:absolute;inset:0;background:var(–purple);transform:scaleX(0);transform-origin:left;transition:transform 0.35s ease}
+.btn-discover:hover::before{transform:scaleX(1)}
+.btn-discover span{position:relative;z-index:1}
+.btn-discover-arrow{position:relative;z-index:1;font-size:1rem;transition:transform 0.3s ease}
+.btn-discover:hover .btn-discover-arrow{transform:translateX(6px)}
+
+.intro-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;border-top:1px solid rgba(91,71,137,0.12);animation:fadeUp 0.8s 0.5s ease forwards;opacity:0}
+.stat{padding:24px 0;border-right:1px solid rgba(91,71,137,0.1)}
+.stat:last-child{border-right:none}
+.stat-num{font-family:var(–serif);font-size:2rem;font-weight:300;color:var(–navy);line-height:1;margin-bottom:4px}
+.stat-label{font-family:var(–sans);font-size:0.54rem;letter-spacing:0.2em;text-transform:uppercase;color:var(–text-soft);font-weight:300}
+
+/* ─── QUIZ ─── */
+#screen-quiz{padding-top:52px}
+
+.progress-wrap{margin-bottom:56px}
+.progress-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:12px}
+.progress-chapter{font-family:var(–sans);font-size:0.54rem;letter-spacing:0.28em;text-transform:uppercase;color:var(–text-soft);font-weight:300}
+.progress-count{font-family:var(–serif);font-size:1.5rem;font-weight:300;font-style:italic;color:var(–purple)}
+.progress-track{height:1px;background:rgba(91,71,137,0.12);position:relative}
+.progress-fill{position:absolute;top:0;left:0;height:100%;background:linear-gradient(90deg,var(–purple),var(–gold));transition:width 0.9s cubic-bezier(.4,0,.2,1)}
+.progress-dot{position:absolute;right:-4px;top:-4px;width:9px;height:9px;border-radius:50%;background:var(–gold);box-shadow:0 0 14px rgba(196,168,130,0.5)}
+
+.q-step{display:none}
+.q-step.active{display:block;animation:fadeUp 0.5s ease forwards}
+
+.q-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.q-eyebrow-line{width:24px;height:1px;background:var(–gold)}
+.q-eyebrow-text{font-family:var(–sans);font-size:0.54rem;letter-spacing:0.3em;text-transform:uppercase;color:var(–gold);font-weight:300}
+
+.q-text{font-family:var(–serif);font-weight:300;font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.2;color:var(–navy);margin-bottom:44px}
+.q-text em{font-style:italic;color:var(–purple)}
+
+/* Options */
+.options{display:flex;flex-direction:column;gap:2px}
+.opt{position:relative;cursor:pointer;padding:20px 24px 20px 20px;display:flex;align-items:center;gap:18px;background:transparent;border:none;border-bottom:1px solid rgba(91,71,137,0.08);transition:all 0.25s ease;text-align:left;width:100%}
+.opt:first-child{border-top:1px solid rgba(91,71,137,0.08)}
+.opt::before{content:’’;position:absolute;left:0;top:0;bottom:0;width:0;background:var(–purple);transition:width 0.25s ease}
+.opt:hover{background:var(–purple-mist);padding-left:28px}
+.opt:hover::before{width:2px}
+.opt.selected{background:var(–purple-pale);padding-left:28px}
+.opt.selected::before{width:3px;background:linear-gradient(180deg,var(–purple),var(–gold))}
+
+.opt-icon-wrap{width:44px;height:44px;border:1px solid rgba(91,71,137,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;transition:all 0.25s;position:relative;z-index:1}
+.opt.selected .opt-icon-wrap{border-color:var(–purple);background:rgba(91,71,137,0.08)}
+.opt-text{flex:1;position:relative;z-index:1}
+.opt-title{font-family:var(–sans);font-weight:300;letter-spacing:0.1em;font-size:0.78rem;text-transform:uppercase;color:var(–navy);margin-bottom:3px}
+.opt-desc{font-family:var(–serif);font-style:italic;font-size:0.9rem;color:var(–text-soft);line-height:1.4}
+.opt-selector{width:20px;height:20px;border:1px solid rgba(91,71,137,0.2);border-radius:50%;flex-shrink:0;position:relative;z-index:1;display:flex;align-items:center;justify-content:center;transition:all 0.25s}
+.opt.selected .opt-selector{border-color:var(–purple);background:var(–purple)}
+.opt.selected .opt-selector::after{content:’’;width:6px;height:6px;border-radius:50%;background:#fff}
+
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:32px;border-top:1px solid rgba(91,71,137,0.08)}
+.btn-back{font-family:var(–sans);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;background:none;border:none;color:var(–text-soft);cursor:pointer;padding:0;transition:color 0.2s;display:flex;align-items:center;gap:8px}
+.btn-back:hover{color:var(–navy)}
+.btn-next{position:relative;overflow:hidden;background:var(–navy);color:#fff;font-family:var(–sans);font-weight:300;letter-spacing:0.26em;font-size:0.6rem;text-transform:uppercase;border:none;cursor:pointer;padding:16px 40px;transition:all 0.3s ease;display:flex;align-items:center;gap:12px}
+.btn-next::before{content:’’;position:absolute;inset:0;background:var(–purple);transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease}
+.btn-next:hover:not(:disabled)::before{transform:scaleX(1)}
+.btn-next span,.btn-next-arrow{position:relative;z-index:1}
+.btn-next:disabled{opacity:0.25;cursor:not-allowed}
+.btn-next:hover:not(:disabled) .btn-next-arrow{animation:arrowPulse 0.6s ease infinite}
+@keyframes arrowPulse{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}
+
+/* ─── EMAIL GATE ─── */
+#screen-email{padding-top:72px;max-width:520px}
+.gate-ornament{font-family:var(–serif);font-size:0.8rem;letter-spacing:0.5em;color:var(–gold);margin-bottom:24px;opacity:0.7}
+.gate-title{font-family:var(–serif);font-weight:300;font-size:clamp(2rem,7vw,3.5rem);line-height:1.1;color:var(–navy);margin-bottom:20px}
+.gate-title em{font-style:italic;color:var(–purple)}
+.gate-sub{font-family:var(–sans);font-weight:300;font-size:0.88rem;line-height:1.75;color:#777;margin-bottom:44px}
+
+.field-row{display:flex;gap:12px}
+.field-block{flex:1;margin-bottom:16px}
+.field-label{display:block;font-family:var(–sans);font-size:0.52rem;letter-spacing:0.26em;text-transform:uppercase;color:var(–text-soft);margin-bottom:8px;font-weight:400}
+.field-input{width:100%;background:transparent;border:none;border-bottom:1px solid rgba(91,71,137,0.2);padding:12px 0;font-family:var(–sans);font-size:0.9rem;font-weight:300;color:var(–navy);outline:none;transition:border-color 0.25s}
+.field-input:focus{border-color:var(–purple)}
+.field-input::placeholder{color:rgba(91,71,137,0.25)}
+
+.consent{font-family:var(–sans);font-size:0.6rem;color:var(–text-soft);line-height:1.65;margin:20px 0 32px;font-weight:300}
+.err{font-family:var(–sans);font-size:0.62rem;color:#c0392b;display:none;margin-bottom:12px;letter-spacing:0.08em}
+.loading{font-family:var(–serif);font-style:italic;font-size:0.9rem;color:var(–purple);display:none;margin-top:14px;opacity:0.7}
+
+.btn-reveal{position:relative;overflow:hidden;width:100%;background:var(–navy);color:#fff;font-family:var(–sans);font-weight:300;letter-spacing:0.3em;font-size:0.62rem;text-transform:uppercase;border:none;cursor:pointer;padding:20px;transition:all 0.35s ease}
+.btn-reveal::before{content:’’;position:absolute;inset:0;background:var(–purple);transform:scaleX(0);transform-origin:left;transition:transform 0.35s ease}
+.btn-reveal:hover::before{transform:scaleX(1)}
+.btn-reveal span{position:relative;z-index:1}
+
+/* ─── RESULTS ─── */
+#screen-results{padding-top:64px}
+
+.results-header{margin-bottom:60px;position:relative}
+.results-kicker{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.results-kicker-line{height:1px;width:32px;background:var(–gold)}
+.results-kicker-text{font-family:var(–sans);font-size:0.54rem;letter-spacing:0.32em;text-transform:uppercase;color:var(–gold);font-weight:300}
+.results-title{font-family:var(–serif);font-weight:300;font-size:clamp(2.5rem,9vw,5.5rem);line-height:0.95;color:var(–navy);margin-bottom:24px}
+.results-title em{display:block;font-style:italic;color:var(–purple)}
+.results-tagline{font-family:var(–sans);font-weight:300;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(–gold-dark);margin:14px 0 20px}
+.results-desc{font-family:var(–serif);font-size:clamp(1rem,2.5vw,1.15rem);color:#555;line-height:1.85;max-width:560px;font-weight:300}
+
+.sent-note{display:none;font-family:var(–serif);font-style:italic;font-size:0.88rem;color:var(–purple);margin-bottom:40px;padding-left:16px;border-left:2px solid var(–purple-light)}
+
+/* DNA */
+.dna-wrap{background:var(–purple-mist);border-top:1px solid rgba(91,71,137,0.1);border-bottom:1px solid rgba(91,71,137,0.1);padding:28px 32px;margin:44px 0;position:relative}
+.dna-wrap::before{content:‘YOUR SCENT DNA’;position:absolute;top:-8px;left:32px;background:var(–purple-mist);padding:0 10px;font-family:var(–sans);font-size:0.5rem;letter-spacing:0.3em;color:var(–gold);font-weight:400}
+.dna-tags{display:flex;flex-wrap:wrap;gap:10px}
+.dna-tag{font-family:var(–serif);font-style:italic;font-size:0.95rem;color:var(–purple);background:#fff;border:1px solid rgba(91,71,137,0.12);padding:6px 18px}
+
+/* Section label */
+.section-label{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.section-label-text{font-family:var(–sans);font-size:0.54rem;letter-spacing:0.28em;text-transform:uppercase;color:var(–text-soft);font-weight:300;white-space:nowrap}
+.section-label-rule{flex:1;height:1px;background:rgba(91,71,137,0.1)}
+
+/* Product cards */
+.rec-list{display:flex;flex-direction:column;gap:0;margin-bottom:56px;border-top:1px solid rgba(91,71,137,0.08)}
+.rec-card{display:flex;gap:28px;align-items:flex-start;padding:32px 0;border-bottom:1px solid rgba(91,71,137,0.08);text-decoration:none;color:inherit;transition:all 0.25s ease;position:relative}
+.rec-card::before{content:’’;position:absolute;left:-32px;top:0;bottom:0;width:0;background:var(–purple);transition:width 0.25s ease}
+.rec-card:hover{padding-left:16px}
+.rec-card:hover::before{width:3px}
+.rec-roman{font-family:var(–serif);font-size:3rem;font-weight:300;font-style:italic;color:rgba(91,71,137,0.12);line-height:1;flex-shrink:0;width:36px;transition:color 0.25s}
+.rec-card:hover .rec-roman{color:rgba(91,71,137,0.25)}
+.rec-body{flex:1}
+.rec-name{font-family:var(–serif);font-size:1.4rem;font-weight:400;color:var(–navy);margin-bottom:4px}
+.rec-type{font-family:var(–sans);font-size:0.52rem;letter-spacing:0.22em;text-transform:uppercase;color:var(–gold-dark);margin-bottom:10px;font-weight:300}
+.rec-desc{font-family:var(–serif);font-style:italic;font-size:0.92rem;color:#777;line-height:1.65;margin-bottom:14px}
+.rec-notes{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.rec-note{font-family:var(–sans);font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:var(–purple);background:var(–purple-mist);padding:4px 12px;font-weight:300}
+.rec-sub{font-family:var(–serif);font-style:italic;font-size:0.85rem;color:var(–text-soft);font-weight:300;margin-left:6px}
+.bottles-list{display:flex;flex-direction:column;gap:0;margin:16px 0;border-top:1px solid rgba(91,71,137,0.08)}
+.bottle-row{display:flex;align-items:baseline;gap:10px;padding:10px 0;border-bottom:1px solid rgba(91,71,137,0.06)}
+.bottle-house{font-family:var(–sans);font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;color:var(–gold-dark);font-weight:400;flex-shrink:0;min-width:120px}
+.bottle-name{font-family:var(–serif);font-size:1rem;color:var(–navy);font-weight:400;flex-shrink:0}
+.bottle-vibe{font-family:var(–serif);font-style:italic;font-size:0.82rem;color:var(–text-soft);line-height:1.4}
+.rec-cta{font-family:var(–sans);font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(–navy);font-weight:300;display:flex;align-items:center;gap:8px;transition:gap 0.2s;margin-top:4px}
+.rec-card:hover .rec-cta{gap:14px;color:var(–purple)}
+
+/* Consultation */
+.consult-wrap{background:var(–navy);padding:44px 40px;margin-bottom:56px;position:relative;overflow:hidden}
+.consult-wrap::before{content:’’;position:absolute;top:-80px;right:-80px;width:240px;height:240px;border:1px solid rgba(196,168,130,0.08);border-radius:50%}
+.consult-wrap::after{content:’’;position:absolute;top:-40px;right:-40px;width:140px;height:140px;border:1px solid rgba(196,168,130,0.06);border-radius:50%}
+.consult-kicker{font-family:var(–sans);font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(–gold);margin-bottom:14px;font-weight:300}
+.consult-title{font-family:var(–serif);font-weight:300;font-size:clamp(1.5rem,4vw,2.2rem);color:#fff;line-height:1.2;margin-bottom:14px}
+.consult-title em{font-style:italic;color:rgba(200,188,224,0.8)}
+.consult-body{font-family:var(–sans);font-weight:300;font-size:0.82rem;line-height:1.8;color:rgba(255,255,255,0.45);margin-bottom:28px;max-width:440px}
+.btn-consult{display:inline-flex;align-items:center;gap:12px;background:transparent;border:1px solid rgba(196,168,130,0.35);color:var(–gold);font-family:var(–sans);font-weight:300;letter-spacing:0.24em;font-size:0.58rem;text-transform:uppercase;cursor:pointer;padding:15px 28px;text-decoration:none;transition:all 0.3s ease;position:relative;z-index:1}
+.btn-consult:hover{background:rgba(196,168,130,0.1);border-color:var(–gold)}
+
+/* Footer */
+.results-footer{border-top:1px solid rgba(91,71,137,0.1);padding-top:44px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-quote{font-family:var(–serif);font-style:italic;font-size:1rem;color:var(–text-soft)}
+.footer-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-shop{background:var(–navy);color:#fff;font-family:var(–sans);font-weight:300;letter-spacing:0.22em;font-size:0.58rem;text-transform:uppercase;border:none;cursor:pointer;padding:15px 30px;text-decoration:none;display:inline-block;transition:all 0.3s ease;position:relative;overflow:hidden}
+.btn-shop::before{content:’’;position:absolute;inset:0;background:var(–purple);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.btn-shop:hover::before{transform:scaleX(1)}
+.btn-shop span{position:relative;z-index:1}
+.btn-retake{background:transparent;color:var(–text-soft);font-family:var(–sans);font-weight:300;letter-spacing:0.2em;font-size:0.58rem;text-transform:uppercase;border:1px solid rgba(91,71,137,0.15);cursor:pointer;padding:15px 24px;transition:all 0.2s}
+.btn-retake:hover{border-color:var(–purple);color:var(–purple)}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+.anim{opacity:0;animation:fadeUp 0.7s ease forwards}
+.anim-1{animation-delay:0.05s}
+.anim-2{animation-delay:0.15s}
+.anim-3{animation-delay:0.25s}
+.anim-4{animation-delay:0.35s}
+.anim-5{animation-delay:0.45s}
+.anim-6{animation-delay:0.55s}
+.anim-7{animation-delay:0.65s}
+
+@media(max-width:540px){
+.nav-bar{padding:16px 20px}
+#app{padding:0 20px 80px}
+.intro-stats{grid-template-columns:repeat(2,1fr)}
+.stat:nth-child(2){border-right:none}
+.stat:nth-child(3){border-top:1px solid rgba(91,71,137,0.1)}
+.field-row{flex-direction:column;gap:0}
+.rec-card{flex-direction:column;gap:12px}
+.results-footer{flex-direction:column;text-align:center}
+.consult-wrap{padding:32px 24px}
+}
+</style>
+
+</head>
+<body>
+
+<!-- ── FLOATING BOTTLES ── -->
+
+<div class="bottles-layer" id="bottles"></div>
+<div class="grain"></div>
+
+<!-- ── BANNER ── -->
+
+<div class="top-banner">
+  Free UK shipping on your first order · Use code <strong>ROVEYS</strong> at checkout · UK only
+</div>
+
+<!-- ── NAV ── -->
+
+<nav class="nav-bar">
+  <a href="https://roveys.co.uk" class="nav-logo">ROVEYS</a>
+  <a href="https://roveys.co.uk/e-shop" class="nav-link">Explore</a>
+</nav>
+
+<div id="app">
+
+  <!-- ════ INTRO ════ -->
+
+  <div id="screen-intro" class="screen active">
+    <div class="intro-flag anim anim-1">
+      <div class="intro-flag-line"></div>
+      <span class="intro-flag-text">Niche &amp; Luxury Perfume · London 🇬🇧</span>
+    </div>
+
+```
+<h1 class="intro-title anim anim-2">
+  Date the
+  <em>Fragrance</em>
+</h1>
+
+<div class="intro-rule anim anim-3">
+  <div class="intro-rule-line"></div>
+  <div class="intro-rule-diamond"></div>
+  <div class="intro-rule-line"></div>
+</div>
+
+<p class="intro-body anim anim-4">
+  If you could wave a magic wand and instantly know the next scent destined for your fragrance wardrobe, would you still put yourself through the heartbreak of buying the wrong ones first to find it?
+</p>
+<p class="intro-body-two anim anim-5">
+  Come back to the present. We don't do heartbreak here. Seven questions stand between you and the fragrance that was always yours. Shall we?
+</p>
+
+<button class="btn-discover anim anim-6" onclick="showScreen('screen-quiz');updateProgress()">
+  <span>Let's Find Your Scent</span>
+  <span class="btn-discover-arrow">→</span>
+</button>
+
+<div class="intro-stats anim anim-7">
+  <div class="stat"><div class="stat-num">7</div><div class="stat-label">Questions</div></div>
+  <div class="stat"><div class="stat-num">5</div><div class="stat-label">Profiles</div></div>
+  <div class="stat"><div class="stat-num">3</div><div class="stat-label">Picks for You</div></div>
+  <div class="stat"><div class="stat-num">2'</div><div class="stat-label">To Complete</div></div>
+</div>
+```
+
+  </div>
+
+  <!-- ════ QUIZ ════ -->
+
+  <div id="screen-quiz" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-header">
+        <span class="progress-chapter" id="prog-chapter">Mood &amp; Personality</span>
+        <span class="progress-count" id="prog-count">01 / 07</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="prog-fill" style="width:14%">
+          <div class="progress-dot"></div>
+        </div>
+      </div>
+    </div>
+
+```
+<!-- Q1 -->
+<div class="q-step active" data-q="0" data-chapter="Mood &amp; Personality">
+  <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Mood &amp; Personality</span></div>
+  <h2 class="q-text">How would you describe<br>your <em>inner world?</em></h2>
+  <div class="options">
+    <button class="opt" onclick="select(this,0,0)"><div class="opt-icon-wrap">🌙</div><div class="opt-text"><div class="opt-title">Mysterious &amp; Sensual</div><div class="opt-desc">Drawn to depth, shadows and quiet allure</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,0,1)"><div class="opt-icon-wrap">🌸</div><div class="opt-text"><div class="opt-title">Romantic &amp; Dreamy</div><div class="opt-desc">Soft, poetic and warm at heart</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,0,2)"><div class="opt-icon-wrap">⚡</div><div class="opt-text"><div class="opt-title">Bold &amp; Confident</div><div class="opt-desc">Unapologetic, powerful, unforgettable</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,0,3)"><div class="opt-icon-wrap">🌿</div><div class="opt-text"><div class="opt-title">Calm &amp; Grounded</div><div class="opt-desc">Serene, nature-loving, effortlessly present</div></div><div class="opt-selector"></div></button>
+  </div>
+</div>
+
+<!-- Q2 -->
+<div class="q-step" data-q="1" data-chapter="Occasion">
+  <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Occasion</span></div>
+  <h2 class="q-text">When do you want your scent<br>to <em>speak for you?</em></h2>
+  <div class="options">
+    <button class="opt" onclick="select(this,1,0)"><div class="opt-icon-wrap">🕯️</div><div class="opt-text"><div class="opt-title">Date Night</div><div class="opt-desc">Intimate, magnetic, unforgettable</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,1,1)"><div class="opt-icon-wrap">💼</div><div class="opt-text"><div class="opt-title">Office &amp; Professional</div><div class="opt-desc">Polished, refined, quietly powerful</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,1,2)"><div class="opt-icon-wrap">☀️</div><div class="opt-text"><div class="opt-title">Everyday Elegance</div><div class="opt-desc">Your signature, worn every single day</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,1,3)"><div class="opt-icon-wrap">🥂</div><div class="opt-text"><div class="opt-title">Special Occasions</div><div class="opt-desc">Events and moments that must last</div></div><div class="opt-selector"></div></button>
+  </div>
+</div>
+
+<!-- Q3 -->
+<div class="q-step" data-q="2" data-chapter="Scent Family">
+  <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Scent Family</span></div>
+  <h2 class="q-text">Which scent world<br><em>calls to you?</em></h2>
+  <div class="options">
+    <button class="opt" onclick="select(this,2,0)"><div class="opt-icon-wrap">🌺</div><div class="opt-text"><div class="opt-title">Floral</div><div class="opt-desc">Rose, jasmine, peony; soft and feminine</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,2,1)"><div class="opt-icon-wrap">🪵</div><div class="opt-text"><div class="opt-title">Woody &amp; Earthy</div><div class="opt-desc">Sandalwood, cedar, oud, vetiver</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,2,2)"><div class="opt-icon-wrap">🔮</div><div class="opt-text"><div class="opt-title">Oriental &amp; Spiced</div><div class="opt-desc">Amber, musk, vanilla, incense</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,2,3)"><div class="opt-icon-wrap">🌊</div><div class="opt-text"><div class="opt-title">Fresh &amp; Aquatic</div><div class="opt-desc">Citrus, sea air, green tea</div></div><div class="opt-selector"></div></button>
+  </div>
+</div>
+
+<!-- Q4 -->
+<div class="q-step" data-q="3" data-chapter="Scent Strength">
+  <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Scent Strength</span></div>
+  <h2 class="q-text">What speaks<br>to your <em>soul?</em></h2>
+  <div class="options">
+    <button class="opt" onclick="select(this,3,0)"><div class="opt-icon-wrap">🌬️</div><div class="opt-text"><div class="opt-title">Light &amp; Airy</div><div class="opt-desc">Fresh, clean, effortless; like a second skin</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,3,1)"><div class="opt-icon-wrap">🌸</div><div class="opt-text"><div class="opt-title">Soft &amp; Floral</div><div class="opt-desc">Romantic, delicate, timelessly feminine</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,3,2)"><div class="opt-icon-wrap">🪵</div><div class="opt-text"><div class="opt-title">Rich &amp; Woody</div><div class="opt-desc">Warm, earthy, quietly sophisticated</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,3,3)"><div class="opt-icon-wrap">🖤</div><div class="opt-text"><div class="opt-title">Dark &amp; Intense</div><div class="opt-desc">Oud, tobacco, leather, smoke; unapologetically bold</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,3,4)"><div class="opt-icon-wrap">🔥</div><div class="opt-text"><div class="opt-title">Bold &amp; Spiced</div><div class="opt-desc">Amber, saffron, resinous, commanding; you came to be noticed</div></div><div class="opt-selector"></div></button>
+  </div>
+</div>
+
+<!-- Q5 -->
+<div class="q-step" data-q="4" data-chapter="Intensity">
+  <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Intensity</span></div>
+  <h2 class="q-text">How do you want your<br>fragrance to <em>linger?</em></h2>
+  <div class="options">
+    <button class="opt" onclick="select(this,4,0)"><div class="opt-icon-wrap">🪷</div><div class="opt-text"><div class="opt-title">Whisper-light</div><div class="opt-desc">A soft trail only those close to you catch</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,4,1)"><div class="opt-icon-wrap">💫</div><div class="opt-text"><div class="opt-title">Effortlessly Present</div><div class="opt-desc">Noticed without being announced</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,4,2)"><div class="opt-icon-wrap">🔥</div><div class="opt-text"><div class="opt-title">Commanding</div><div class="opt-desc">You enter the room before you do</div></div><div class="opt-selector"></div></button>
+  </div>
+</div>
+
+<!-- Q6 -->
+<div class="q-step" data-q="5" data-chapter="Your World">
+  <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Your World</span></div>
+  <h2 class="q-text">Which image resonates<br>with your <em>spirit?</em></h2>
+  <div class="options">
+    <button class="opt" onclick="select(this,5,0)"><div class="opt-icon-wrap">🌙</div><div class="opt-text"><div class="opt-title">Moonlit terrace in Marrakech</div><div class="opt-desc">Exotic, warm, ancient and intoxicating</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,5,1)"><div class="opt-icon-wrap">🌹</div><div class="opt-text"><div class="opt-title">Rose garden at dawn in Paris</div><div class="opt-desc">Romantic, refined, quietly timeless</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,5,2)"><div class="opt-icon-wrap">🌊</div><div class="opt-text"><div class="opt-title">Cliffside in Santorini</div><div class="opt-desc">Airy, free, luminous and clear</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,5,3)"><div class="opt-icon-wrap">🏛️</div><div class="opt-text"><div class="opt-title">Private members' club, London</div><div class="opt-desc">Polished, commanding, effortlessly luxurious</div></div><div class="opt-selector"></div></button>
+  </div>
+</div>
+
+<!-- Q7 -->
+<div class="q-step" data-q="6" data-chapter="Your Legacy">
+  <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Your Legacy</span></div>
+  <h2 class="q-text">The feeling you want<br>to <em>leave behind?</em></h2>
+  <div class="options">
+    <button class="opt" onclick="select(this,6,0)"><div class="opt-icon-wrap">💋</div><div class="opt-text"><div class="opt-title">Desire &amp; Intrigue</div><div class="opt-desc">They wonder about you long after</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,6,1)"><div class="opt-icon-wrap">🕊️</div><div class="opt-text"><div class="opt-title">Grace &amp; Serenity</div><div class="opt-desc">Calm, elegant, quietly beautiful</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,6,2)"><div class="opt-icon-wrap">👑</div><div class="opt-text"><div class="opt-title">Power &amp; Presence</div><div class="opt-desc">Regal, iconic, impossible to forget</div></div><div class="opt-selector"></div></button>
+    <button class="opt" onclick="select(this,6,3)"><div class="opt-icon-wrap">🌿</div><div class="opt-text"><div class="opt-title">Comfort &amp; Warmth</div><div class="opt-desc">Like home; safe, soft, welcoming</div></div><div class="opt-selector"></div></button>
+  </div>
+</div>
+
+<div class="q-nav">
+  <button class="btn-back" id="btn-back" onclick="goBack()" style="visibility:hidden">← Back</button>
+  <button class="btn-next" id="btn-next" onclick="goNext()" disabled>
+    <span id="btn-next-label">Continue</span>
+    <span class="btn-next-arrow">→</span>
+  </button>
+</div>
+```
+
+  </div>
+
+  <!-- ════ EMAIL GATE ════ -->
+
+  <div id="screen-email" class="screen">
+    <p class="gate-ornament">✦ ✦ ✦</p>
+    <h2 class="gate-title">Your profile<br>is <em>ready</em></h2>
+    <p class="gate-sub">Enter your details and we'll send your personalised scent profile straight to your inbox; along with exclusive Roveys recommendations curated just for you.</p>
+    <div class="email-form">
+      <div class="field-row">
+        <div class="field-block">
+          <label class="field-label">First Name</label>
+          <input class="field-input" id="f-first" type="text" placeholder="Your first name"/>
+        </div>
+        <div class="field-block">
+          <label class="field-label">Last Name</label>
+          <input class="field-input" id="f-last" type="text" placeholder="Your last name"/>
+        </div>
+      </div>
+      <div class="field-block">
+        <label class="field-label">Email Address</label>
+        <input class="field-input" id="f-email" type="email" placeholder="your@email.com"/>
+      </div>
+      <p class="consent">By submitting you agree to receive your scent results and curated Roveys recommendations. Unsubscribe anytime. We respect your privacy.</p>
+      <div class="err" id="err-msg">Please enter a valid email address.</div>
+      <button class="btn-reveal" onclick="submitEmail()"><span>Reveal My Scent Profile ✦</span></button>
+      <div class="loading" id="loading-msg">Curating your personal profile…</div>
+    </div>
+  </div>
+
+  <!-- ════ RESULTS ════ -->
+
+  <div id="screen-results" class="screen">
+    <div class="results-header">
+      <div class="results-kicker">
+        <div class="results-kicker-line"></div>
+        <span class="results-kicker-text">Your Scent Profile · Roveys London</span>
+      </div>
+      <h2 class="results-title" id="r-title">Loading…</h2>
+      <p class="results-tagline" id="r-tagline"></p>
+      <p class="results-desc" id="r-desc"></p>
+    </div>
+
+```
+<p class="sent-note" id="sent-note"></p>
+
+<div class="dna-wrap">
+  <div class="dna-tags" id="r-traits"></div>
+</div>
+
+<div class="section-label">
+  <span class="section-label-text">Curated for You</span>
+  <div class="section-label-rule"></div>
+</div>
+<div class="rec-list" id="r-recs"></div>
+
+<div class="consult-wrap">
+  <div class="consult-kicker">✦ Want Something More Personal?</div>
+  <h3 class="consult-title">Book a <em>Bespoke Fragrance</em><br>Consultation</h3>
+  <p class="consult-body">In a private one-to-one telephone consultation, Roveys' founder Ells will translate exactly who you are into the fragrance; or fragrance wardrobe; that was always meant for you. Independent. Unbiased. Dangerously good at matchmaking.</p>
+  <a class="btn-consult" href="https://roveys.co.uk/experiences/ola/services/bespoke-fragrance-consultation" target="_blank">
+    Book Your Consultation <span>→</span>
+  </a>
+</div>
+
+<div class="results-footer">
+  <p class="footer-quote">"Try it. Love it. Commit!"</p>
+  <div class="footer-btns">
+    <a class="btn-shop" href="https://roveys.co.uk/e-shop" target="_blank"><span>Shop the Collection</span></a>
+    <button class="btn-retake" onclick="retake()">Retake Quiz</button>
+  </div>
+</div>
+```
+
+  </div>
+
+</div>
+
+<script>
+// ── Luxury Bubbles ──
+(function(){
+  const wrap = document.getElementById('bottles');
+
+  function createBubble(){
+    const b = document.createElement('div');
+    const sz = 6 + Math.random() * 20;
+    const left = Math.random() * 100;
+    const dur = 12 + Math.random() * 10;   // sweet spot; noticeable but graceful
+    const delay = Math.random() * 25;
+    const sway = 16 + Math.random() * 28;
+
+    // Visible but refined iridescent colours
+    const colors = [
+      ['rgba(255,255,255,0.65)','rgba(196,168,130,0.35)','rgba(196,168,130,0.1)'],  // gold pearl
+      ['rgba(255,255,255,0.6)','rgba(200,188,224,0.4)','rgba(139,114,184,0.12)'],   // lilac pearl
+      ['rgba(255,255,255,0.62)','rgba(220,180,200,0.32)','rgba(180,120,140,0.1)'],  // rose pearl
+      ['rgba(255,255,255,0.65)','rgba(210,200,240,0.35)','rgba(150,130,200,0.1)'],  // iris pearl
+      ['rgba(255,255,255,0.7)','rgba(240,230,210,0.3)','rgba(196,168,130,0.08)'],   // champagne
+    ];
+    const c = colors[Math.floor(Math.random() * colors.length)];
+
+    b.style.cssText = `
+      position: absolute;
+      width: ${sz}px;
+      height: ${sz}px;
+      left: ${left}%;
+      bottom: -${sz}px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 28%, ${c[0]}, ${c[1]} 48%, ${c[2]} 70%, transparent 100%);
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow:
+        inset 0 0 ${sz*0.5}px rgba(255,255,255,0.55),
+        inset ${sz*0.18}px ${sz*-0.12}px ${sz*0.35}px rgba(255,255,255,0.35),
+        0 0 ${sz*0.5}px rgba(196,168,130,0.1);
+      animation: bubbleRise ${dur}s ease-in-out infinite;
+      animation-delay: -${delay}s;
+      --sway: ${sway}px;
+      pointer-events: none;
+    `;
+    wrap.appendChild(b);
+  }
+
+  // 26 bubbles; present and beautiful without crowding
+  for(let i = 0; i < 26; i++) createBubble();
+
+})();
+
+// ── Data ──
+const answers=new Array(7).fill(null);
+let current=0;
+const TOTAL=7;
+const chapters=['Mood &amp; Personality','Occasion','Scent Family','Scent Strength','Intensity','Your World','Your Legacy'];
+
+const products=[
+  {
+    id:"spring",
+    name:"Your Spring Edit",
+    sub:"Bloom & Mischief",
+    type:"5 × 10ml · Full-Sized Value £1,750+",
+    price:"£265",
+    url:"https://roveys.co.uk/e-shop/ols/products/your-spring-edit--bloommischief",
+    desc:"Five extraordinary dates, one impeccable wardrobe. Each fragrance a distinct character; together, an edit that speaks before you do.",
+    bottles:[
+      {house:"Gritti",name:"Tutu Pink Extrait",vibe:"Sweet, sparkling, irresistibly joyful"},
+      {house:"Roja Parfums",name:"Pour Femme",vibe:"Rose, tuberose; magnetic from the first note"},
+      {house:"Guerlain",name:"Angélique Noire",vibe:"Green, creamy, quietly mysterious"},
+      {house:"Louis Vuitton",name:"Symphony",vibe:"Radiant grapefruit and bergamot; pure luminosity"},
+      {house:"Creed",name:"Wind Flowers",vibe:"Orange blossom, jasmine; effortless romance"}
+    ]
+  },
+  {
+    id:"christmas",
+    name:"The Grown & Sexy Edit",
+    sub:"Intoxicating · Layerable · Unforgettable",
+    type:"5 × 10ml · Full-Sized Value £1,600+",
+    price:"£265",
+    url:"https://roveys.co.uk/e-shop/ols/products/the-roveys-christmas-edit",
+    desc:"Boozy, smouldering, and deeply seductive. Five fragrances curated to layer together; each one a different shade of grown and entirely, unapologetically sexy.",
+    bottles:[
+      {house:"Initio Parfums Privés",name:"Side Effect",vibe:"Rum, cinnamon; a siren's call in a bottle"},
+      {house:"Maison Francis Kurkdjian",name:"Grand Soir",vibe:"Amber, benzoin; what success actually smells like"},
+      {house:"Kilian",name:"Angel's Share",vibe:"Cognac, vanilla; velvety, boozy, made to linger"},
+      {house:"Guerlain",name:"Tobacco Honey",vibe:"Warm tobacco, golden honey; quietly commanding"},
+      {house:"Atelier des Ors",name:"Lune Féline Extrait",vibe:"Dark, feline, resinous; for those who own the night"}
+    ]
+  },
+  {
+    id:"freshie",
+    name:"Hey Freshie",
+    sub:"The Niche Fresh Edit",
+    type:"5 × 10ml · Niche Collection",
+    price:"Coming Soon",
+    url:"https://roveys.co.uk/e-shop/ols/products/roveys-hey-freshie",
+    desc:"Clean without being simple. Fresh without being forgettable. Five niche masterpieces that wear like a second skin; effortless, luminous, entirely considered.",
+    bottles:[
+      {house:"Le Labo",name:"Bergamotte 22",vibe:"Bright bergamot; the ultimate clean luxury"},
+      {house:"Roja Parfums",name:"Burlington 1819",vibe:"Crisp, refined, quietly aristocratic"},
+      {house:"Xerjoff",name:"Torino 21",vibe:"Woody citrus; effortlessly sophisticated"},
+      {house:"Louis Vuitton",name:"Imagination",vibe:"Aquatic, airy, luminous from first spray"},
+      {house:"Nishane",name:"Hacivat",vibe:"Woody, fresh, a modern niche classic"}
+    ]
+  },
+  {
+    id:"gentleman",
+    name:"A Refined Gentleman",
+    sub:"The Founder's Edit · For Him",
+    type:"3 × 10ml · Curated Trio",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/a-refined-gentleman",
+    desc:"Three exceptional fragrances for the person who considers their presence an art form. Boardroom to after-hours; each one immaculate.",
+    bottles:[
+      {house:"Amouage",name:"Royal Tobacco",vibe:"Dark, enigmatic, pure authority"},
+      {house:"Roja Parfums",name:"Elysium Eau Intense",vibe:"Fresh, invigorating, vetiver-grounded"},
+      {house:"Maison Francis Kurkdjian",name:"Grand Soir",vibe:"Amber, benzoin; regal beyond measure"}
+    ]
+  },
+  {
+    id:"roses",
+    name:"I Just Can't Get Enough",
+    sub:"The Rose Edit · Feminine Energy",
+    type:"5 × 10ml · Full Parfums de Marly Collection",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/roveys-i-just-cant-get-enough",
+    desc:"For the unrepentant rose lover. Five iconic feminines; each one a different shade of extraordinary. Layer them. Stack them. Make them yours.",
+    bottles:[
+      {house:"Parfums de Marly",name:"Delina",vibe:"Sophisticated, sexy, intoxicating; absolute compliment getter"},
+      {house:"Parfums de Marly",name:"Delina Exclusif",vibe:"Vanilla, litchi, oud; mysterious, creamy, game-changing"},
+      {house:"Parfums de Marly",name:"Delina La Rosée",vibe:"Dewy rose, soft and divine; fit for a princess"},
+      {house:"Louis Vuitton",name:"Les Sables Roses",vibe:"Warm rose on sandalwood; desert luxury at its finest"},
+      {house:"Frédéric Malle",name:"Portrait of a Lady",vibe:"Turkish rose, patchouli; the most iconic rose in modern perfumery"}
+    ]
+  },
+  {
+    id:"showstopper",
+    name:"The Showstopper",
+    sub:"Layer Like a Pro Edit",
+    type:"5 × 10ml · Niche Collection",
+    price:"Coming Soon",
+    url:"https://roveys.co.uk/e-shop/ols/products/roveys-layer-like-a-pro",
+    desc:"Five extraordinary fragrances selected to layer together and stand alone. Each one a conversation. Together, an identity entirely your own.",
+    bottles:[
+      {house:"Roja Parfums",name:"Enigma Aoud",vibe:"Dark, resinous oud; deeply commanding"},
+      {house:"Atelier des Ors",name:"Rose Omeyaade",vibe:"Rose of rare distinction; opulent and warm"},
+      {house:"Xerjoff",name:"La Capitale",vibe:"Luminous, refined, effortlessly cosmopolitan"},
+      {house:"Louis Vuitton",name:"Stellar Times",vibe:"Woody iris; quiet authority, maximum impact"},
+      {house:"Guerlain",name:"Rose Barbare",vibe:"Wild rose, vetiver; untamed yet precise"}
+    ]
+  },
+  // ── Individual Miniatures & Discovery Sets ──
+  {
+    id:"aoud-extraordinaire",
+    name:"Roja Aoud Extraordinaire",
+    sub:"10ml Miniature",
+    type:"Roja Parfums · Extrait de Parfum · 10ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/roja-aoud-extraordinaire-10ml",
+    desc:"Fruity, flirty, and just a little naughty. Juicy pineapple, peach and plum with a decadent twist of Oud, mango and candyfloss. Mini in size, major in attitude.",
+    bottles:[
+      {house:"Roja Parfums",name:"Aoud Extraordinaire",vibe:"Pineapple, peach, oud, mango, candyfloss — the IT girl's oud"}
+    ]
+  },
+  {
+    id:"elysium-intense",
+    name:"Elysium Eau Intense",
+    sub:"Roja Parfums · 10ml Miniature",
+    type:"Roja Parfums · Eau Intense · 10ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/miniatures",
+    desc:"Fresh and invigorating with tangy rhubarb, juniper berries and grapefruit evolving into an earthy vibe with musky goodness and woody vetiver base. Perfect for starting the day.",
+    bottles:[
+      {house:"Roja Parfums",name:"Elysium Eau Intense",vibe:"Rhubarb, grapefruit, vetiver — daytime sophistication"}
+    ]
+  },
+  {
+    id:"complex-2020",
+    name:"Complex 2020",
+    sub:"Boadicea the Victorious · 10ml",
+    type:"Boadicea the Victorious · Extrait · 10ml · £50",
+    price:"£50",
+    url:"https://roveys.co.uk/e-shop/ols/products/complex-2020-10ml-boadicea-the-victoria",
+    desc:"Dark, confident and irresistibly seductive. Sage, violet and incense deepen into oud, warm musks and animalic leather. Not a safe choice. But the right one never is.",
+    bottles:[
+      {house:"Boadicea the Victorious",name:"Complex 2020",vibe:"Sage, oud, leather, incense — the slow burn"}
+    ]
+  },
+  {
+    id:"isola-verde",
+    name:"Isola Verde",
+    sub:"Roja Parfums · 10ml Miniature",
+    type:"Roja Parfums · Extrait · 10ml · £65",
+    price:"£65",
+    url:"https://roveys.co.uk/e-shop/ols/products/isola-verde-10ml-roja-parfums",
+    desc:"A private island, bottled. Guava and sparkling citrus over magnolia and osmanthus; deepened by blond tobacco, amber musks and rum-soaked richness. Unisex. Addictive. Sun-kissed.",
+    bottles:[
+      {house:"Roja Parfums",name:"Isola Verde",vibe:"Guava, tobacco, osmanthus — tropical meets grown-up elegance"}
+    ]
+  },
+  {
+    id:"valiant",
+    name:"Valiant",
+    sub:"Boadicea the Victorious · 10ml",
+    type:"Boadicea the Victorious · EDP · 10ml · £95",
+    price:"£95",
+    url:"https://roveys.co.uk/e-shop/ols/products/valiant-10ml-miniature-boadicea-the-victorious",
+    desc:"Smell like a billionaire. Mandarin and neroli kiss luminous florals before melting into vanilla, amber and sandalwood. Rare, iconic and unapologetically luxurious.",
+    bottles:[
+      {house:"Boadicea the Victorious",name:"Valiant",vibe:"Citrus, jasmine, vanilla, sandalwood — billionaire energy"}
+    ]
+  },
+  {
+    id:"sand-skin",
+    name:"Sand & Skin",
+    sub:"Floraïku · 30ml",
+    type:"Floraïku · EDP · 30ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/xn--sand-and-skin-by-floraku--30ml-eau-de-parfum-mde92877a",
+    desc:"Warm, intimate and quietly addictive. Creamy Madagascan vanilla and soft benzoin wrapped in ylang-ylang. Smells like sun on bare skin; effortless, sensual, impossible to forget.",
+    bottles:[
+      {house:"Floraïku",name:"Sand & Skin",vibe:"Vanilla, benzoin, ylang-ylang — skin after a sun-kissed day"}
+    ]
+  },
+  {
+    id:"diaghilev",
+    name:"Diaghilev",
+    sub:"Roja Parfums · 7.5ml Miniature",
+    type:"Roja Parfums · Parfum · 7.5ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/diaghilev-75ml-roja-parfums",
+    desc:"Success bottled. Rich, magnetic, complex and unapologetically dominant. Bergamot and rose deepen into oakmoss, leather, ambergris and musk. For the one who leads, not follows.",
+    bottles:[
+      {house:"Roja Parfums",name:"Diaghilev",vibe:"Bergamot, rose, oakmoss, leather — authority in a bottle"}
+    ]
+  },
+  {
+    id:"valaya",
+    name:"Valaya",
+    sub:"30ml · Date Me Pod also available",
+    type:"Fragrance · EDP · 30ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/valalya",
+    desc:"It comes in soft but stays like a memory. White peach, bergamot and orange flower melt into musk and Akigalawood. Effortless, captivating, seduction served softly.",
+    bottles:[
+      {house:"Valaya",name:"Valaya",vibe:"White peach, orange flower, musk — a scent like falling in love"}
+    ]
+  },
+  {
+    id:"ardent",
+    name:"Ardent",
+    sub:"Boadicea the Victorious · 10ml",
+    type:"Boadicea the Victorious · EDP · 10ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/ardent-10ml--boadicea-the-victorious",
+    desc:"Not your typical floral. Warm, magnetic and unforgettable. Turns heads in elevators. Makes people say your name slower. Bold, alluring and just a little dangerous.",
+    bottles:[
+      {house:"Boadicea the Victorious",name:"Ardent",vibe:"Rich romantic florals, warm earth — fire and elegance"}
+    ]
+  },
+  {
+    id:"alexandria-ii",
+    name:"Alexandria II",
+    sub:"Xerjoff · 15ml Miniature",
+    type:"Xerjoff · EDP · 15ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/alexandria-ii-by-xerjoff-15ml",
+    desc:"A cult classic oud that hits different. Cinnamon and apple open into Bulgarian rose and cedarwood; then creamy vanilla meets sacred Laotian oud. Regal, smooth, addictive.",
+    bottles:[
+      {house:"Xerjoff",name:"Alexandria II",vibe:"Cinnamon, rose, Laotian oud, vanilla — a legacy scent"}
+    ]
+  },
+  {
+    id:"elysium-femme",
+    name:"Elysium Pour Femme",
+    sub:"Roja Parfums · 10ml",
+    type:"Roja Parfums · EDP · 10ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/elysium-pour-femme-10ml-by-roja-parfums",
+    desc:"Juicy fruit, luxe florals and creamy vanilla. Soft glam with a killer edge. Bergamot, peach and blackberry bloom into jasmine, peony and magnolia. Your new signature scent.",
+    bottles:[
+      {house:"Roja Parfums",name:"Elysium Pour Femme",vibe:"Peach, jasmine, vanilla, sandalwood — effortlessly chic"}
+    ]
+  },
+  {
+    id:"parfum-nuit",
+    name:"Parfum de la Nuit No. 2",
+    sub:"Roja Parfums · 7.5ml",
+    type:"Roja Parfums · Parfum · 7.5ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/parfum",
+    desc:"Bold, magnetic and for the woman who knows desire calls when darkness falls. Rich oriental warmth; creamy florals, caramel warmth and smooth woods. A power move.",
+    bottles:[
+      {house:"Roja Parfums",name:"Parfum de la Nuit No. 2",vibe:"Caramel, florals, leather, woods — classy and compelling"}
+    ]
+  },
+  {
+    id:"harrods",
+    name:"Rendez-Vous Chez Harrods",
+    sub:"20ml Miniature",
+    type:"Extrait de Parfum · 20ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/rendez-vous-chez-harrods-20ml",
+    desc:"Sweet caramel and romantic rose melt into the deep embrace of Cambodian Oud. Rich, loud, lingering. For the woman whose presence is undeniable and entirely her own.",
+    bottles:[
+      {house:"Harrods",name:"Rendez-Vous Chez Harrods",vibe:"Caramel, rose, Cambodian oud — sweet meets strength"}
+    ]
+  },
+  {
+    id:"sweetie-aoud",
+    name:"Sweetie Aoud",
+    sub:"Roja Parfums · 10ml Miniature",
+    type:"Roja Parfums · Extrait · 10ml · £69",
+    price:"£69",
+    url:"https://roveys.co.uk/e-shop/ols/products/sweetie-aoud-75ml-by-roja-parfums-7",
+    desc:"Golden caramel, toasted almonds and buttery pastry melt into smoky oud, incense and worn leather. Arabian nights draped in Parisian elegance. Bold. Boujie. Unforgettable.",
+    bottles:[
+      {house:"Roja Parfums",name:"Sweetie Aoud",vibe:"Caramel, almond, oud, leather — gourmand seduction"}
+    ]
+  },
+  {
+    id:"blue-sapphire",
+    name:"Blue Sapphire",
+    sub:"Boadicea the Victorious · 10ml",
+    type:"Boadicea the Victorious · EDP · 10ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/blue-sapphire",
+    desc:"Pure opulence in a bottle. Sparkling citrus meets rose and jasmine resting on oud, amber and patchouli. Regal, refined and unforgettable.",
+    bottles:[
+      {house:"Boadicea the Victorious",name:"Blue Sapphire",vibe:"Citrus, rose, oud, amber — prestige and power"}
+    ]
+  },
+  {
+    id:"oriana",
+    name:"Oriana",
+    sub:"Parfums de Marly · 30ml",
+    type:"Parfums de Marly · EDP · 30ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/oriana-30ml",
+    desc:"Sweet, stunning and a little spoiled. Mandarin, raspberry mousse and orange blossom melt into musk and whipped cream. Rich-girl energy that lingers.",
+    bottles:[
+      {house:"Parfums de Marly",name:"Oriana",vibe:"Raspberry, orange blossom, musk — flirty floral gourmand"}
+    ]
+  },
+  {
+    id:"roja-womens",
+    name:"Roja Women's Collection",
+    sub:"7 × 2ml Discovery Set",
+    type:"Roja Parfums · 7 Scents · 2ml Each",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/xn--roja-womens-collection-7x2ml--zd2r",
+    desc:"Seven fragrances, seven intentions, one evolving you. Elysium, Elixir, Oceania, Isola Sol, NüWa, Sweetie Aoud and Amber Aoud. Date them all; find the one that feels like home.",
+    bottles:[
+      {house:"Roja Parfums",name:"Elysium",vibe:"Elevated, composed, daytime luxury"},
+      {house:"Roja Parfums",name:"Elixir",vibe:"Playful, feminine, effortlessly pretty"},
+      {house:"Roja Parfums",name:"Sweetie Aoud",vibe:"Indulgent, sensual, unforgettable"},
+      {house:"Roja Parfums",name:"Amber Aoud",vibe:"Presence and depth for evenings out"},
+      {house:"Roja Parfums",name:"Oceania",vibe:"Fresh, confident, clean and refined"}
+    ]
+  },
+  {
+    id:"aoud-collection",
+    name:"Aoud Collection",
+    sub:"Roja Parfums · 7 × 2ml",
+    type:"Roja Parfums · 7 Ouds · 2ml Each",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/aoud-collection-roja-parfums-7x2ml",
+    desc:"A personality test in perfume form. Seven ouds; each one a different character. Date them all, layer your favourites, find the oud that was made for your skin.",
+    bottles:[
+      {house:"Roja Parfums",name:"Aoud Extraordinaire",vibe:"Fruity, glossy, addictive"},
+      {house:"Roja Parfums",name:"Enigma Aoud",vibe:"Mysterious, magnetic, dangerous"},
+      {house:"Roja Parfums",name:"Sweetie Aoud",vibe:"Warm, sweet, irresistible"},
+      {house:"Roja Parfums",name:"Amber Aoud",vibe:"Rich, polished, intentional"},
+      {house:"Roja Parfums",name:"Taif Aoud",vibe:"Warm, spicy, quietly powerful"}
+    ]
+  },
+  {
+    id:"maison-crivelli",
+    name:"Chocs Olfactifs Discovery Set",
+    sub:"Maison Crivelli · 6 × 1.5ml",
+    type:"Maison Crivelli · Extrait · 6 Scents · 1.5ml Each",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/the-chocs-olfactifs-discovery-set-by-maison-crivelli-6x15ml",
+    desc:"Six personalities in perfume form. Oud Stallion, Patchouli Magnetik, Tubéreuse Astrale and more. Luxurious, portable and never predictable. Date all six.",
+    bottles:[
+      {house:"Maison Crivelli",name:"Oud Maracujá",vibe:"Tropical fruit meets smoky oud"},
+      {house:"Maison Crivelli",name:"Oud Stallion",vibe:"Bold leather and oud; commanding"},
+      {house:"Maison Crivelli",name:"Tubéreuse Astrale",vibe:"Airy tuberose; dreamlike"},
+      {house:"Maison Crivelli",name:"Patchouli Magnetik",vibe:"Creamy woods with mischief"},
+      {house:"Maison Crivelli",name:"Ambre Chromatique",vibe:"Bright, textured amber"}
+    ]
+  },
+  {
+    id:"mfk-him",
+    name:"MFK Fragrance Wardrobe",
+    sub:"Maison Francis Kurkdjian · 8 × 2ml · For Him",
+    type:"Maison Francis Kurkdjian · 8 Scents · 2ml Each",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/maison-francis-kurkdjian-fragrance-wardrobe-8x2ml-for-him",
+    desc:"Eight MFK scents including Baccarat Rouge 540 and Grand Soir. A gentlemanly discovery set with a complimentary niche perfume and beauty gift included.",
+    bottles:[
+      {house:"Maison Francis Kurkdjian",name:"Baccarat Rouge 540",vibe:"The iconic; floral woody amber"},
+      {house:"Maison Francis Kurkdjian",name:"Grand Soir",vibe:"Warm amber benzoin; what success smells like"},
+      {house:"Maison Francis Kurkdjian",name:"Various MFK Classics",vibe:"8 scents to find your signature"}
+    ]
+  },
+  {
+    id:"impress",
+    name:"Wear to Impress",
+    sub:"The Masterpiece Edit",
+    type:"Founder's Selection · Statement Scents",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/masterpiece",
+    desc:"For the moments that demand everything. Roja Parfums Sweetie Aoud and Xerjoff Alexandria II; two of the most talked-about fragrances in niche perfumery. Full-sized value £970+.",
+    bottles:[
+      {house:"Roja Parfums",name:"Sweetie Aoud",vibe:"Powerful, seductive; a statement before you speak"},
+      {house:"Xerjoff",name:"Alexandria II",vibe:"Enchanting, magnetic; made to be remembered"}
+    ]
+  }
+];
+
+const archetypes=[
+  {
+    label:"You are",em:"The Midnight Muse",
+    tagline:"Dark. Singular. Completely magnetic.",
+    desc:"There is a quality to you that resists easy description. You carry depth the way others carry conversation; effortlessly, and with considerably more effect. You are drawn to the hour when the room thins and the interesting ones remain. Your fragrance should reflect that. Smouldering. Resinous. The kind of scent that arrives in a room and changes the atmosphere. Boozy amber, dark tobacco, oud that lingers long after you've gone. Not for everyone. Precisely the point.",
+    traits:["Oud & Resins","Nocturnal","Smouldering Amber","Deeply Sensual","Unforgettable"],
+    recs:["aoud-collection","complex-2020","christmas"]
+  },
+  {
+    label:"You are",em:"The Romantic in Bloom",
+    tagline:"Refined. Radiant. Quietly devastating.",
+    desc:"You possess the rare ability to make everything feel considered; a room, a conversation, an entrance. There is nothing accidental about your elegance; it simply appears that way, which is of course the highest achievement. Your fragrance is a floral of genuine distinction. Not the obvious rose. Something with dimension; a tuberose that commands, a jasmine that whispers, a musk that stays. The kind of scent that earns the question: what is that? And you simply smile.",
+    traits:["Floral & Feminine","Effortlessly Elegant","Rose & Tuberose","Soft Power","Timeless"],
+    recs:["roses","roja-womens","spring"]
+  },
+  {
+    label:"You are",em:"The Luminous One",
+    tagline:"Effortless. Considered. Entirely your own.",
+    desc:"You have perfected the art of the understated entrance. No drama required; your presence is its own announcement. There is a clarity to you, a brightness that feels entirely uncontrived. Your fragrance should carry that same intelligence: fresh without being simple, clean without being absent. A bergamot of genuine quality. An aquatic note with actual depth. The kind of scent that makes people feel inexplicably better in your company. You already knew that, of course.",
+    traits:["Fresh & Luminous","Bergamot & Citrus","Niche Aquatics","Clean Sophistication","Modern Classic"],
+    recs:["freshie","roja-womens","isola-verde"]
+  },
+  {
+    label:"You are",em:"The Grounded Soul",
+    tagline:"Composed. Complex. Impossible to rush.",
+    desc:"You are not performing for anyone. That, in a world of performance, is the most compelling thing imaginable. You move at your own pace; considered, intentional, and entirely secure in that. Your fragrance reflects the same quality. Woody, warm, architectural. Vetiver with genuine character. Cedarwood that grounds rather than decorates. A tobacco note that speaks of quiet evenings and excellent taste. The sort of scent that improves with time, as all truly interesting things do.",
+    traits:["Woody & Earthy","Vetiver & Cedar","Tobacco Notes","Quiet Authority","Deeply Considered"],
+    recs:["diaghilev","elysium-intense","mfk-him"]
+  },
+  {
+    label:"You are",em:"The Sovereign",
+    tagline:"Authoritative. Singular. Non-negotiable.",
+    desc:"You have a relationship with rooms that most people simply do not have. You don't enter them; you alter them. There is a precision to how you occupy space, a certainty that others spend years attempting to manufacture and you were simply born with. Your fragrance is not a complement to your presence. It is an extension of it. Bold spice, dark amber, oud that announces itself without apology. The kind of scent that precedes you and remains after you leave. As it should be.",
+    traits:["Dark Oud","Bold Spice","Commanding Amber","Power Dressing","Iconic"],
+    recs:["aoud-collection","alexandria-ii","sweetie-aoud"]
+  }
+];
+
+function getArchetype(){
+  const s=[0,0,0,0,0];
+  const m=answers[0], sc=answers[2], st=answers[3], fe=answers[6];
+  if(m===0){s[0]+=3;s[4]+=1} if(m===1){s[1]+=3} if(m===2){s[4]+=3;s[0]+=1} if(m===3){s[3]+=3;s[2]+=1}
+  if(sc===0){s[1]+=2;s[2]+=1} if(sc===1){s[3]+=2;s[4]+=1} if(sc===2){s[0]+=2;s[4]+=1} if(sc===3){s[2]+=2;s[3]+=1}
+  if(st===0){s[2]+=2;s[1]+=1} if(st===1){s[1]+=3} if(st===2){s[3]+=2;s[2]+=1} if(st===3){s[0]+=3;s[4]+=1} if(st===4){s[4]+=3;s[0]+=1}
+  if(fe===0){s[0]+=2} if(fe===1){s[1]+=2;s[3]+=1} if(fe===2){s[4]+=2} if(fe===3){s[3]+=2;s[1]+=1}
+  return s.indexOf(Math.max(...s));
+}
+
+function getProduct(id){ return products.find(p=>p.id===id); }
+
+function buildResults(firstName,arch){
+  document.getElementById('r-title').innerHTML=`${arch.label}<br><em>${arch.em}</em>`;
+  document.getElementById('r-tagline').textContent=arch.tagline;
+  document.getElementById('r-desc').textContent=arch.desc;
+  document.getElementById('r-traits').innerHTML=arch.traits.map(t=>`<span class="dna-tag">${t}</span>`).join('');
+  document.getElementById('r-recs').innerHTML=arch.recs.map((pid,i)=>{
+    const p=getProduct(pid);
+    if(!p)return'';
+    const bottleHTML=p.bottles.map(b=>`
+      <div class="bottle-row">
+        <div class="bottle-house">${b.house}</div>
+        <div class="bottle-name">${b.name}</div>
+        <div class="bottle-vibe">${b.vibe}</div>
+      </div>`).join('');
+    return `<a class="rec-card" href="${p.url}" target="_blank">
+      <div class="rec-roman">${['I','II','III'][i]}</div>
+      <div class="rec-body">
+        <div class="rec-name">${p.name} <span class="rec-sub">${p.sub}</span></div>
+        <div class="rec-type">${p.type} &nbsp;·&nbsp; ${p.price}</div>
+        <div class="rec-desc">${p.desc}</div>
+        <div class="bottles-list">${bottleHTML}</div>
+        <div class="rec-cta">Discover This Edit <span>→</span></div>
+      </div>
+    </a>`;
+  }).join('');
+  if(firstName){
+    const n=document.getElementById('sent-note');
+    n.textContent=`Your results have been sent to your inbox, ${firstName}.`;
+    n.style.display='block';
+  }
+}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>{s.classList.remove('active');s.style.display='none'});
+  const el=document.getElementById(id);
+  el.style.display='block';
+  requestAnimationFrame(()=>el.classList.add('active'));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function select(el,q,val){
+  document.querySelectorAll(`.q-step[data-q="${q}"] .opt`).forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[q]=val;
+  document.getElementById('btn-next').disabled=false;
+}
+
+function updateProgress(){
+  const pct=Math.round(((current+1)/TOTAL)*100);
+  const step=document.querySelectorAll('.q-step')[current];
+  document.getElementById('prog-chapter').textContent=chapters[current];
+  document.getElementById('prog-count').textContent=`0${current+1} / 0${TOTAL}`;
+  document.getElementById('prog-fill').style.width=`${pct}%`;
+  document.getElementById('btn-back').style.visibility=current===0?'hidden':'visible';
+  document.getElementById('btn-next-label').textContent=current===TOTAL-1?'See My Results':'Continue';
+}
+
+function goNext(){
+  if(answers[current]===null)return;
+  if(current===TOTAL-1){showScreen('screen-email');return;}
+  document.querySelectorAll('.q-step')[current].classList.remove('active');
+  current++;
+  document.querySelectorAll('.q-step')[current].classList.add('active');
+  document.getElementById('btn-next').disabled=answers[current]===null;
+  updateProgress();
+}
+
+function goBack(){
+  if(current===0)return;
+  document.querySelectorAll('.q-step')[current].classList.remove('active');
+  current--;
+  document.querySelectorAll('.q-step')[current].classList.add('active');
+  document.getElementById('btn-next').disabled=false;
+  updateProgress();
+}
+
+async function submitEmail(){
+  const first=document.getElementById('f-first').value.trim();
+  const last=document.getElementById('f-last').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const err=document.getElementById('err-msg');
+  const load=document.getElementById('loading-msg');
+  if(!email||!email.includes('@')){err.style.display='block';return;}
+  err.style.display='none';load.style.display='block';
+  document.querySelector('.btn-reveal').disabled=true;
+  const arch=archetypes[getArchetype()];
+  try{
+    await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=StQHsM',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','revision':'2023-02-22'},
+      body:JSON.stringify({data:{type:'subscription',attributes:{
+        list_id:'XTRJZ4',
+        custom_source:'Scent Quiz',
+        email,
+        properties:{
+          first_name: first,
+          last_name: last,
+          scent_profile: `${arch.em}`,
+          scent_tagline: arch.tagline,
+          scent_desc: arch.desc,
+          scent_traits: arch.traits.join(', '),
+          rec_1_name: arch.recs[0] ? (products.find(p=>p.id===arch.recs[0])||{}).name||'' : '',
+          rec_1_type: arch.recs[0] ? (products.find(p=>p.id===arch.recs[0])||{}).type||'' : '',
+          rec_1_url: arch.recs[0] ? (products.find(p=>p.id===arch.recs[0])||{}).url||'' : '',
+          rec_1_bottles: arch.recs[0] ? ((products.find(p=>p.id===arch.recs[0])||{}).bottles||[]).map(b=>`${b.house} – ${b.name}`).join(', ') : '',
+          rec_2_name: arch.recs[1] ? (products.find(p=>p.id===arch.recs[1])||{}).name||'' : '',
+          rec_2_type: arch.recs[1] ? (products.find(p=>p.id===arch.recs[1])||{}).type||'' : '',
+          rec_2_url: arch.recs[1] ? (products.find(p=>p.id===arch.recs[1])||{}).url||'' : '',
+          rec_2_bottles: arch.recs[1] ? ((products.find(p=>p.id===arch.recs[1])||{}).bottles||[]).map(b=>`${b.house} – ${b.name}`).join(', ') : '',
+          rec_3_name: arch.recs[2] ? (products.find(p=>p.id===arch.recs[2])||{}).name||'' : '',
+          rec_3_type: arch.recs[2] ? (products.find(p=>p.id===arch.recs[2])||{}).type||'' : '',
+          rec_3_url: arch.recs[2] ? (products.find(p=>p.id===arch.recs[2])||{}).url||'' : '',
+          rec_3_bottles: arch.recs[2] ? ((products.find(p=>p.id===arch.recs[2])||{}).bottles||[]).map(b=>`${b.house} – ${b.name}`).join(', ') : '',
+          quiz_source: 'Date the Fragrance Quiz'
+        }
+      }}})
+    });
+  }catch(e){console.log('Klaviyo:',e)}
+  load.style.display='none';
+  buildResults(first,arch);
+  showScreen('screen-results');
+}
+
+function retake(){
+  answers.fill(null);current=0;
+  document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+  document.querySelectorAll('.q-step').forEach((s,i)=>s.classList.toggle('active',i===0));
+  ['f-first','f-last','f-email'].forEach(id=>document.getElementById(id).value='');
+  document.querySelector('.btn-reveal').disabled=false;
+  showScreen('screen-intro');
+}
+</script>
+
+</body>
+</html>
