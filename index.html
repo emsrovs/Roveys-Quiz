@@ -1200,6 +1200,10 @@ function retake(){
   answers.fill(null);current=0;
   document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
   document.querySelectorAll('.q-step').forEach((s,i)=>s.class
+['f-first','f-last','f-email'].forEach(id=>document.getElementById(id).value='');
+document.querySelector('.btn-reveal').disabled=false;
+showScreen('screen-intro');
+}
 </script>
 </body>
 </html>
