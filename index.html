@@ -450,10 +450,18 @@ html,body{min-height:100%;background:var(--white);color:var(--text);font-family:
         <label class="field-label">Email Address</label>
         <input class="field-input" id="f-email" type="email" placeholder="your@email.com"/>
       </div>
-      <p class="consent">By submitting you agree to receive your scent results and curated Roveys recommendations. Unsubscribe anytime. We respect your privacy.</p>
+      <!-- Phone field -->
+  <div class="field-block" style="margin-bottom:16px">
+    <label class="field-label">Mobile Number <span style="color:var(--text-light);font-size:0.5rem;letter-spacing:0.1em">(Optional)</span></label>
+    <input class="field-input" id="f-phone" type="tel" placeholder="+44 7700 000000"/>
+    <p style="font-family:Raleway,sans-serif;font-size:0.62rem;color:#8B72B8;line-height:1.6;margin-top:6px;font-weight:300">Receive exclusive Roveys offers and updates by text. Reserved for our most discerning clients ✦<br/>Share your number and get <strong style="color:#5B4789">first access</strong> to new collections, limited editions and private sale events before anyone else.</p>
+  </div>
+
+  <p class="consent">By submitting you agree to receive your scent results and curated Roveys recommendations. Unsubscribe anytime. We respect your privacy.</p>
+
   <div style="background:#EDE8F5;border:1px solid rgba(91,71,137,0.25);border-left:3px solid #5B4789;padding:14px 18px;margin-top:16px;margin-bottom:4px">
     <p style="font-family:Raleway,sans-serif;font-size:0.78rem;font-weight:400;color:#3B2D5E;line-height:1.65;margin:0">
-      📬 &nbsp;<strong>Check your junk or spam folder</strong> if your results don't arrive within a few minutes. Move the email to your inbox and add <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="244d4a424b64564b52415d570a474b0a514f">[email&#160;protected]</a></strong> to your contacts to never miss a Roveys update.
+      ✦ &nbsp;Once you have completed and submitted your details above, your results should be sitting in your inbox.<br/><br/>If not; don't fret, check your junk folder, move it across and add <strong>info&#64;roveys.co.uk</strong> to your contacts. Because your perfect fragrance deserves a proper introduction ✨💜
     </p>
   </div>
       <div class="err" id="err-msg">Please enter a valid email address.</div>
@@ -1200,7 +1208,7 @@ function retake(){
   answers.fill(null);current=0;
   document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
   document.querySelectorAll('.q-step').forEach((s,i)=>s.classList.toggle('active',i===0));
-  ['f-first','f-last','f-email'].forEach(id=>document.getElementById(id).value='');
+  ['f-first','f-last','f-email','f-phone'].forEach(id=>{var el=document.getElementById(id);if(el)el.value='';});
   document.querySelector('.btn-reveal').disabled=false;
   showScreen('screen-intro');
 }
