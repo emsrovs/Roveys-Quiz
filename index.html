@@ -451,6 +451,11 @@ html,body{min-height:100%;background:var(--white);color:var(--text);font-family:
         <input class="field-input" id="f-email" type="email" placeholder="your@email.com"/>
       </div>
       <p class="consent">By submitting you agree to receive your scent results and curated Roveys recommendations. Unsubscribe anytime. We respect your privacy.</p>
+  <div style="background:#EDE8F5;border:1px solid rgba(91,71,137,0.25);border-left:3px solid #5B4789;padding:14px 18px;margin-top:16px;margin-bottom:4px">
+    <p style="font-family:Raleway,sans-serif;font-size:0.78rem;font-weight:400;color:#3B2D5E;line-height:1.65;margin:0">
+      📬 &nbsp;<strong>Check your junk or spam folder</strong> if your results don't arrive within a few minutes. Move the email to your inbox and add <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="244d4a424b64564b52415d570a474b0a514f">[email&#160;protected]</a></strong> to your contacts to never miss a Roveys update.
+    </p>
+  </div>
       <div class="err" id="err-msg">Please enter a valid email address.</div>
       <button class="btn-reveal" onclick="submitEmail()"><span>Reveal My Scent Profile ✦</span></button>
       <div class="loading" id="loading-msg">Curating your personal profile…</div>
@@ -501,7 +506,7 @@ html,body{min-height:100%;background:var(--white);color:var(--text);font-family:
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── Luxury Bubbles ──
 (function(){
   const wrap = document.getElementById('bottles');
@@ -617,6 +622,18 @@ const products=[
       {house:"Amouage",name:"Royal Tobacco",vibe:"Dark, enigmatic, pure authority"},
       {house:"Roja Parfums",name:"Elysium Eau Intense",vibe:"Fresh, invigorating, vetiver-grounded"},
       {house:"Maison Francis Kurkdjian",name:"Grand Soir",vibe:"Amber, benzoin; regal beyond measure"}
+    ]
+  },
+  {
+    id:"delina-30ml",
+    name:"Delina",
+    sub:"Parfums de Marly · 30ml",
+    type:"Parfums de Marly · Eau de Parfum · 30ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/delina-30ml",
+    desc:"A celebration of everlasting femininity. Turkish rose lightened by lily of the valley and peony; enriched by lychee, rhubarb and bergamot. Seductive cashmere wood and soft velvety musk. Contemporary, timeless and utterly captivating.",
+    bottles:[
+      {house:"Parfums de Marly",name:"Delina",vibe:"Turkish rose, peony, cashmere wood — pure feminine elegance"}
     ]
   },
   {
@@ -907,6 +924,45 @@ const products=[
     ]
   },
   {
+    id:"valaya-30ml",
+    name:"Valaya",
+    sub:"30ml · Fresh & Magnetic",
+    type:"Eau de Parfum · 30ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/valalya",
+    desc:"It comes in soft but stays like a memory. White peach, bergamot and sunlit mandarin melt into orange flower and vetiver; finishing in musk and Akigalawood. Effortless, radiant and impossible to forget.",
+    bottles:[
+      {house:"Valaya",name:"Valaya 30ml",vibe:"White peach, orange flower, musk — seduction served softly"}
+    ]
+  },
+  {
+    id:"boadicea-discovery",
+    name:"Boadicea Discovery Collection",
+    sub:"4 × 2ml · Woody & Dark",
+    type:"Boadicea the Victorious · 4 Scents · 2ml Each",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/new-discovery-gift-set-boadicea-the-victorious-4x2ml",
+    desc:"Four powerful personalities; each one unforgettable. Defender, Oud Sapphire, Knight of Love and Lavish. Four dates. Four moods. One unforgettable introduction.",
+    bottles:[
+      {house:"Boadicea the Victorious",name:"Defender",vibe:"Confident, commanding, effortlessly powerful"},
+      {house:"Boadicea the Victorious",name:"Oud Sapphire",vibe:"Dark, rich, magnetic — jewel-toned oud"},
+      {house:"Boadicea the Victorious",name:"Knight of Love",vibe:"Warm, sensual, quietly seductive"},
+      {house:"Boadicea the Victorious",name:"Lavish",vibe:"Decadent, bold, made to be noticed"}
+    ]
+  },
+  {
+    id:"elysium-femme-10ml",
+    name:"Elysium Pour Femme",
+    sub:"Roja Parfums · 10ml",
+    type:"Roja Parfums · EDP · 10ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/elysium-pour-femme-10ml-by-roja-parfums",
+    desc:"Juicy fruit, luxe florals and creamy vanilla. Soft glam with a killer edge. Bergamot, peach and blackberry bloom into jasmine, peony and magnolia; finishing in sandalwood and vanilla musk.",
+    bottles:[
+      {house:"Roja Parfums",name:"Elysium Pour Femme",vibe:"Peach, jasmine, vanilla — effortlessly chic and feminine"}
+    ]
+  },
+  {
     id:"impress",
     name:"Wear to Impress",
     sub:"The Masterpiece Edit",
@@ -934,7 +990,7 @@ const archetypes=[
     tagline:"Refined. Radiant. Quietly devastating.",
     desc:"You possess the rare ability to make everything feel considered; a room, a conversation, an entrance. There is nothing accidental about your elegance; it simply appears that way, which is of course the highest achievement. Your fragrance is a floral of genuine distinction. Not the obvious rose. Something with dimension; a tuberose that commands, a jasmine that whispers, a musk that stays. The kind of scent that earns the question: what is that? And you simply smile.",
     traits:["Floral & Feminine","Effortlessly Elegant","Rose & Tuberose","Soft Power","Timeless"],
-    recs:["roses","roja-womens","spring"]
+    recs:["roses","roja-womens","delina-30ml"]
   },
   {
     label:"You are",em:"The Luminous One",
@@ -971,12 +1027,58 @@ function getArchetype(){
 
 function getProduct(id){ return products.find(p=>p.id===id); }
 
+function getVariantRecs(archIndex, strength){
+  // strength: 0=light/airy, 1=soft/floral, 2=rich/woody, 3=dark/intense, 4=bold/spiced
+  const variants = [
+    // 0: Midnight Muse
+    {
+      dark:   ["aoud-collection","complex-2020","christmas"],
+      rich:   ["christmas","sweetie-aoud","harrods"],
+      default:["aoud-collection","complex-2020","christmas"]
+    },
+    // 1: Romantic in Bloom
+    {
+      soft:   ["roses","delina-30ml","elysium-femme-10ml"],
+      rich:   ["roja-womens","roses","oriana"],
+      default:["roses","roja-womens","delina-30ml"]
+    },
+    // 2: Luminous One
+    {
+      light:  ["freshie","valaya-30ml","isola-verde"],
+      rich:   ["freshie","elysium-femme","sand-skin"],
+      default:["freshie","roja-womens","isola-verde"]
+    },
+    // 3: Grounded Soul
+    {
+      woody:  ["boadicea-discovery","diaghilev","elysium-intense"],
+      dark:   ["complex-2020","diaghilev","aoud-collection"],
+      default:["diaghilev","elysium-intense","mfk-him"]
+    },
+    // 4: Sovereign
+    {
+      bold:   ["alexandria-ii","sweetie-aoud","aoud-collection"],
+      dark:   ["valiant","complex-2020","christmas"],
+      default:["aoud-collection","alexandria-ii","sweetie-aoud"]
+    }
+  ];
+  const v = variants[archIndex];
+  if(archIndex===0){ return (strength===3||strength===4) ? v.dark : strength===2 ? v.rich : v.default; }
+  if(archIndex===1){ return (strength===0||strength===1) ? v.soft : strength===2 ? v.rich : v.default; }
+  if(archIndex===2){ return (strength===0||strength===1) ? v.light : strength===2 ? v.rich : v.default; }
+  if(archIndex===3){ return strength===2 ? v.woody : (strength===3||strength===4) ? v.dark : v.default; }
+  if(archIndex===4){ return (strength===3||strength===4) ? v.dark : v.bold; }
+  return v.default;
+}
+
 function buildResults(firstName,arch){
+  const archIndex = archetypes.indexOf(arch);
+  const strength = answers[3] !== null ? answers[3] : 1;
+  const recs = getVariantRecs(archIndex, strength);
   document.getElementById('r-title').innerHTML=`${arch.label}<br><em>${arch.em}</em>`;
   document.getElementById('r-tagline').textContent=arch.tagline;
   document.getElementById('r-desc').textContent=arch.desc;
   document.getElementById('r-traits').innerHTML=arch.traits.map(t=>`<span class="dna-tag">${t}</span>`).join('');
-  document.getElementById('r-recs').innerHTML=arch.recs.map((pid,i)=>{
+  document.getElementById('r-recs').innerHTML=recs.map((pid,i)=>{
     const p=getProduct(pid);
     if(!p)return'';
     const bottleHTML=p.bottles.map(b=>`
@@ -1097,11 +1199,4 @@ async function submitEmail(){
 function retake(){
   answers.fill(null);current=0;
   document.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
-  document.querySelectorAll('.q-step').forEach((s,i)=>s.classList.toggle('active',i===0));
-  ['f-first','f-last','f-email'].forEach(id=>document.getElementById(id).value='');
-  document.querySelector('.btn-reveal').disabled=false;
-  showScreen('screen-intro');
-}
-</script>
-</body>
-</html>
+  document.querySelectorAll('.q-step').forEach((s,i)=>s.class
