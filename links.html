@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -19,14 +18,10 @@
   --sans:'Raleway',sans-serif;
 }
 html,body{min-height:100%;background:var(--white);font-family:var(--sans);-webkit-font-smoothing:antialiased;color:var(--navy)}
-
-/* Background orbs */
 .bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
 .orb{position:absolute;border-radius:50%}
 .orb1{width:500px;height:500px;background:radial-gradient(circle,rgba(91,71,137,0.1) 0%,transparent 70%);top:-100px;right:-100px}
 .orb2{width:350px;height:350px;background:radial-gradient(circle,rgba(196,168,130,0.08) 0%,transparent 70%);bottom:-60px;left:-60px}
-
-/* Bubbles */
 .bubble{position:fixed;border-radius:50%;pointer-events:none;animation:bubbleRise ease-in-out infinite}
 @keyframes bubbleRise{
   0%{transform:translateY(110%) translateX(0);opacity:0}
@@ -35,11 +30,7 @@ html,body{min-height:100%;background:var(--white);font-family:var(--sans);-webki
   92%{opacity:0.2}
   100%{transform:translateY(-10%) translateX(calc(var(--sway)*-0.5));opacity:0}
 }
-
-/* Page */
 .page{position:relative;z-index:10;max-width:520px;margin:0 auto;padding:52px 24px 80px}
-
-/* Header */
 .header{text-align:center;margin-bottom:48px;animation:fadeUp 0.8s ease forwards;opacity:0}
 .header-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:20px}
 .rule-line{width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
@@ -47,46 +38,33 @@ html,body{min-height:100%;background:var(--white);font-family:var(--sans);-webki
 .rule-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg)}
 .header-logo{font-family:var(--sans);font-weight:200;letter-spacing:0.48em;font-size:1.5rem;color:var(--navy);text-transform:uppercase;text-decoration:none;display:block;margin-bottom:10px}
 .header-tagline{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--purple);letter-spacing:0.02em}
-
-/* Links */
 .links{display:flex;flex-direction:column;gap:16px}
-
 .link-card{display:block;text-decoration:none;color:inherit;border:1px solid rgba(91,71,137,0.2);padding:28px 24px;background:#FFFFFF;transition:all 0.3s ease;position:relative;overflow:hidden;animation:fadeUp 0.7s ease forwards;opacity:0;box-shadow:0 2px 16px rgba(91,71,137,0.06)}
 .link-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(180deg,var(--gold),var(--purple));transition:width 0.3s ease}
 .link-card:hover{border-color:rgba(91,71,137,0.35);background:var(--purple-mist);transform:translateY(-2px);box-shadow:0 8px 32px rgba(91,71,137,0.1)}
 .link-card:hover::before{width:3px}
-
 .link-inner{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .link-text{flex:1}
 .link-kicker{font-family:var(--sans);font-size:0.56rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-bottom:8px}
 .link-title{font-family:var(--serif);font-size:1.55rem;font-weight:300;color:var(--navy);margin-bottom:8px;line-height:1.15;letter-spacing:0.01em}
 .link-desc{font-family:var(--serif);font-style:italic;font-size:1rem;color:#3d3060;line-height:1.7;margin-top:2px}
-.link-price{font-family:var(--serif);font-size:0.95rem;color:var(--gold-dark, #A8895E);margin-top:6px;font-weight:400;letter-spacing:0.04em}
+.link-price{font-family:var(--serif);font-size:0.95rem;color:#A8895E;margin-top:6px;font-weight:400;letter-spacing:0.04em}
 .link-arrow{font-size:1.3rem;color:var(--purple);transition:transform 0.3s ease;flex-shrink:0;font-weight:300}
 .link-card:hover .link-arrow{transform:translateX(5px);color:var(--purple)}
-
-/* Featured card */
 .link-card.featured{border-color:rgba(91,71,137,0.3);background:linear-gradient(135deg,#EDE8F5,#F7F4FC);box-shadow:0 4px 24px rgba(91,71,137,0.1)}
 .link-card.featured .link-kicker{color:var(--purple)}
-
-/* Footer */
 .footer{text-align:center;margin-top:48px;padding-top:32px;border-top:1px solid rgba(91,71,137,0.1);animation:fadeUp 0.7s 0.6s ease forwards;opacity:0}
 .footer-text{font-family:var(--serif);font-style:italic;font-size:0.9rem;color:var(--purple-light);margin-bottom:8px}
 .footer-sub{font-family:var(--sans);font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(91,71,137,0.35);font-weight:300}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
-
 <div class="bg">
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
 </div>
-
 <div class="page">
-
-  <!-- Header -->
   <div class="header">
     <div class="header-rule">
       <div class="rule-line"></div>
@@ -96,23 +74,17 @@ html,body{min-height:100%;background:var(--white);font-family:var(--sans);-webki
     <a href="https://roveys.co.uk" class="header-logo">Roveys</a>
     <p class="header-tagline">Niche &amp; Luxury Perfume · London 🇬🇧</p>
   </div>
-
-  <!-- Links -->
   <div class="links">
-
-    <!-- 1. Quiz -->
     <a href="https://quiz.roveys.co.uk" class="link-card featured" style="animation-delay:0.1s">
       <div class="link-inner">
         <div class="link-text">
           <p class="link-kicker">✦ Free · 7 Questions · 2 Minutes</p>
           <p class="link-title">Take the Scent Quiz</p>
-          <p class="link-desc">Find your perfect fragrance before spending a penny. It is free, it is fun and it is entirely yours.</p>
+          <p class="link-desc">Find your perfect fragrance before spending a penny. Free. Personal. Entirely yours.</p>
         </div>
         <span class="link-arrow">→</span>
       </div>
     </a>
-
-    <!-- 2. Our Story -->
     <a href="https://roveys.co.uk/about" class="link-card" style="animation-delay:0.2s">
       <div class="link-inner">
         <div class="link-text">
@@ -123,55 +95,45 @@ html,body{min-height:100%;background:var(--white);font-family:var(--sans);-webki
         <span class="link-arrow">→</span>
       </div>
     </a>
-
-    <!-- 3. Shop -->
-    <a href="https://roveys.co.uk/e-shop/ols/all?page=1&amp;sortOption=ascend_by_price" class="link-card" style="animation-delay:0.4s">
+    <a href="https://roveys.co.uk/e-shop/ols/all?page=1&sortOption=ascend_by_price" class="link-card" style="animation-delay:0.3s">
       <div class="link-inner">
         <div class="link-text">
           <p class="link-kicker">✦ Niche &amp; Luxury Perfume</p>
           <p class="link-title">Date the Fragrance</p>
-          <p class="link-desc">Roja Parfums, Xerjoff, Creed, Louis Vuitton, Amouage, Strangelove and more; all in beautiful miniatures. Find the one that was always yours before spending a penny on a full bottle.</p>
+          <p class="link-desc">Roja Parfums, Xerjoff, Creed, Louis Vuitton, Amouage and more. All in beautiful miniatures.</p>
         </div>
         <span class="link-arrow">→</span>
       </div>
     </a>
-
-    <!-- 4. Consultation -->
-    <a href="https://roveys.co.uk/experiences/ola/services/bespoke-fragrance-consultation" class="link-card" style="animation-delay:0.5s">
+    <a href="https://roveys.co.uk/experiences/ola/services/bespoke-fragrance-consultation" class="link-card" style="animation-delay:0.4s">
       <div class="link-inner">
         <div class="link-text">
-          <p class="link-kicker">✦ Paid · Private Telephone Consultation</p>
+          <p class="link-kicker">✦ Private Telephone Consultation</p>
           <p class="link-title">Book a Bespoke Consultation</p>
-          <p class="link-desc">Translate exactly who you are into the scent that defines you. No compromise. Great expertise.</p>
+          <p class="link-desc">Your perfect fragrance found with complete independence. No brand affiliation. No compromise.</p>
           <p class="link-price">From £99</p>
         </div>
         <span class="link-arrow">→</span>
       </div>
     </a>
-
-    <!-- 5. Wedding -->
     <a href="https://roveys.co.uk/experiences/ola/services/bespoke-fragrance-consultation" class="link-card" style="animation-delay:0.5s">
       <div class="link-inner">
         <div class="link-text">
-          <p class="link-kicker">✦ Paid · Consultation, Curated Fragrances &amp; Ongoing Support</p>
+          <p class="link-kicker">✦ The Ultimate Wedding Experience</p>
           <p class="link-title">Bespoke Wedding Fragrance</p>
-          <p class="link-desc">The most unforgettable detail of your wedding day will not be seen. It will be felt. Five exceptional niche fragrances personally curated for you and your partner; becoming the signature scent of your love story together.</p>
+          <p class="link-desc">The most unforgettable detail of your wedding day will not be seen. It will be felt.</p>
           <p class="link-price">£595 · United Kingdom · Worldwide Incoming ✦</p>
         </div>
         <span class="link-arrow">→</span>
       </div>
     </a>
-
   </div>
-
-  <!-- Footer -->
   <div class="footer">
     <p class="footer-text">"Try it. Love it. Commit!"</p>
     <p class="footer-sub">✦ &nbsp; Roveys London &nbsp; ✦</p>
+    <p class="footer-sub" style="margin-top:8px">links.roveys.co.uk</p>
   </div>
-
 </div>
-
 <script>
 (function(){
   const colors=[
@@ -190,7 +152,7 @@ html,body{min-height:100%;background:var(--white);font-family:var(--sans);-webki
       width:${sz}px;height:${sz}px;
       left:${Math.random()*100}%;
       bottom:-${sz}px;
-      background:radial-gradient(circle at 30% 28%,${c[0]},${c[1]} 48%,${c[2]} 70%,transparent 100%);
+      background:radial-gradient(circle at 30% 28%,${c\[0\]},${c[1]} 48%,${c[2]} 70%,transparent 100%);
       border:1px solid rgba(255,255,255,0.22);
       box-shadow:inset 0 0 ${sz*0.5}px rgba(255,255,255,0.5);
       animation-duration:${14+Math.random()*12}s;
@@ -202,33 +164,4 @@ html,body{min-height:100%;background:var(--white);font-family:var(--sans);-webki
 })();
 </script>
 </body>
-  <script>
-(function(){
-  const colors=[
-    ['rgba(255,255,255,0.6)','rgba(196,168,130,0.3)','rgba(196,168,130,0.08)'],
-    ['rgba(255,255,255,0.55)','rgba(200,188,224,0.35)','rgba(139,114,184,0.1)'],
-    ['rgba(255,255,255,0.58)','rgba(220,180,200,0.28)','rgba(180,120,140,0.08)'],
-    ['rgba(255,255,255,0.6)','rgba(210,200,240,0.3)','rgba(150,130,200,0.08)'],
-  ];
-  for(let i=0;i<20;i++){
-    const b=document.createElement('div');
-    b.className='bubble';
-    const sz=5+Math.random()*16;
-    const c=colors[Math.floor(Math.random()*colors.length)];
-    const sway=10+Math.random()*18;
-    b.style.cssText=`
-      width:${sz}px;height:${sz}px;
-      left:${Math.random()*100}%;
-      bottom:-${sz}px;
-      background:radial-gradient(circle at 30% 28%,${c[0]},${c[1]} 48%,${c[2]} 70%,transparent 100%);
-      border:1px solid rgba(255,255,255,0.22);
-      box-shadow:inset 0 0 ${sz*0.5}px rgba(255,255,255,0.5);
-      animation-duration:${14+Math.random()*12}s;
-      animation-delay:-${Math.random()*22}s;
-      --sway:${sway}px;
-    `;
-    document.body.appendChild(b);
-  }
-})();
-</script>
 </html>
