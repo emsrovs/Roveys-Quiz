@@ -825,9 +825,21 @@ const products=[
     type:"Roja Parfums · Parfum · 7.5ml",
     price:"Shop Now",
     url:"https://roveys.co.uk/e-shop/ols/products/parfum",
-    desc:"Bold, magnetic and for the woman who knows desire calls when darkness falls. Rich oriental warmth; creamy florals, caramel warmth and smooth woods. A power move.",
+    desc:"Sweet. Sultry. Impossible to ignore. Creamy florals, caramel warmth and smooth woods grounded in Roja sophistication. Bold. Magnetic. For the one who knows desire calls when darkness falls. Classy. Compelling. Completely unforgettable. Not just perfume; a power move.",
     bottles:[
       {house:"Roja Parfums",name:"Parfum de la Nuit No. 2",vibe:"Caramel, florals, leather, woods; classy and compelling"}
+    ]
+  },
+  {
+    id:"amber-aoud",
+    name:"Amber Aoud",
+    sub:"Roja Parfums · 10ml Miniature",
+    type:"Roja Parfums · Pure Perfume · 10ml",
+    price:"Shop Now",
+    url:"https://roveys.co.uk/e-shop/ols/products/amber-aoud---10ml",
+    desc:"Like capturing lightning in a bottle; its beauty lies in the balance. Rose, saffron and oud in perfect harmony; balanced by sweet benzoin and fig with a hint of saltiness in the ambergris base. A symphony of olfactory perfection.",
+    bottles:[
+      {house:"Roja Parfums",name:"Amber Aoud",vibe:"Rose, saffron, oud, benzoin, ambergris; regal and perfectly balanced"}
     ]
   },
   {
@@ -1172,14 +1184,14 @@ function getVariantRecs(archIndex, strength){
   const variants = [
     // 0: Midnight Muse
     {
-      dark:   ["aoud-collection","complex-2020","christmas","melt-my-heart","oud-frankincense"],
-      rich:   ["christmas","sweetie-aoud","harrods","melt-my-heart","oud-frankincense"],
-      default:["aoud-collection","complex-2020","christmas","melt-my-heart","oud-frankincense"]
+      dark:   ["aoud-collection","complex-2020","christmas","melt-my-heart","oud-frankincense","parfum-nuit"],
+      rich:   ["christmas","sweetie-aoud","harrods","melt-my-heart","oud-frankincense","parfum-nuit"],
+      default:["aoud-collection","complex-2020","christmas","melt-my-heart","oud-frankincense","parfum-nuit"]
     },
     // 1: Romantic in Bloom
     {
       soft:   ["roses","delina-30ml","elysium-femme-10ml","oriana","queen-of-silk","it-girl","spring"],
-      rich:   ["roja-womens","roses","oriana","delina-30ml","queen-of-silk","spring"],
+      rich:   ["roja-womens","roses","oriana","delina-30ml","queen-of-silk","spring","amber-aoud"],
       default:["roses","roja-womens","delina-30ml","oriana","queen-of-silk","spring"]
     },
     // 2: Luminous One
@@ -1191,14 +1203,14 @@ function getVariantRecs(archIndex, strength){
     // 3: Grounded Soul
     {
       woody:  ["boadicea-discovery","diaghilev","elysium-intense","melt-my-heart","complex-2020"],
-      dark:   ["complex-2020","diaghilev","aoud-collection","melt-my-heart","oud-frankincense"],
+      dark:   ["complex-2020","diaghilev","aoud-collection","melt-my-heart","oud-frankincense","amber-aoud"],
       default:["diaghilev","elysium-intense","mfk-him","melt-my-heart","boadicea-discovery"]
     },
     // 4: Sovereign
     {
-      bold:   ["alexandria-ii","sweetie-aoud","aoud-collection","blue-sapphire-new","oud-frankincense","forbidden-fruit"],
-      dark:   ["valiant","complex-2020","christmas","blue-sapphire-new","oud-frankincense","forbidden-fruit"],
-      default:["aoud-collection","alexandria-ii","sweetie-aoud","blue-sapphire-new","forbidden-fruit"]
+      bold:   ["alexandria-ii","sweetie-aoud","aoud-collection","blue-sapphire-new","oud-frankincense","forbidden-fruit","parfum-nuit","amber-aoud"],
+      dark:   ["valiant","complex-2020","christmas","blue-sapphire-new","oud-frankincense","forbidden-fruit","parfum-nuit"],
+      default:["aoud-collection","alexandria-ii","sweetie-aoud","blue-sapphire-new","forbidden-fruit","amber-aoud"]
     }
   ];
   const v = variants[archIndex];
