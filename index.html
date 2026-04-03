@@ -24,7 +24,7 @@
   --sans:'Raleway',sans-serif;
 }
 
-  html,body{min-height:100%;background:var(--white);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html,body{min-height:100%;background:var(--white);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 /* ─── FLOATING BOTTLES CANVAS ─── */
 .bottles-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -70,7 +70,7 @@
 .intro-flag-line{height:1px;width:40px;background:var(--gold)}
 .intro-flag-text{font-family:var(--sans);font-size:0.56rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:300}
 
-  .intro-title{font-family:var(--serif);font-weight:300;font-size:clamp(3.5rem,12vw,7rem);line-height:0.92;color:var(--navy);margin-bottom:6px;animation:fadeUp 0.8s 0.1s ease forwards;opacity:0}
+.intro-title{font-family:var(--serif);font-weight:300;font-size:clamp(3.5rem,12vw,7rem);line-height:0.92;color:var(--navy);margin-bottom:6px;animation:fadeUp 0.8s 0.1s ease forwards;opacity:0}
 .intro-title em{display:block;font-style:italic;color:var(--purple);font-weight:300}
 
 .intro-rule{display:flex;align-items:center;gap:16px;margin:28px 0;animation:fadeUp 0.8s 0.2s ease forwards;opacity:0}
@@ -125,11 +125,11 @@
 .opt.selected{background:var(--purple-pale);padding-left:28px}
 .opt.selected::before{width:3px;background:linear-gradient(180deg,var(--purple),var(--gold))}
 
-  .opt-icon-wrap{width:44px;height:44px;border:1px solid rgba(91,71,137,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;transition:all 0.25s;position:relative;z-index:1}
+.opt-icon-wrap{width:44px;height:44px;border:1px solid rgba(91,71,137,0.15);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;transition:all 0.25s;position:relative;z-index:1}
 .opt.selected .opt-icon-wrap{border-color:var(--purple);background:rgba(91,71,137,0.08)}
 .opt-text{flex:1;position:relative;z-index:1}
 .opt-title{font-family:var(--sans);font-weight:300;letter-spacing:0.1em;font-size:0.88rem;text-transform:uppercase;color:var(--navy);margin-bottom:3px}
-.opt-desc{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--text-soft);line-height:1.4}
+.opt-desc{font-family:var(--serif);font-style:italic;font-size:1rem;color:#3d3060;line-height:1.4}
 .opt-selector{width:20px;height:20px;border:1px solid rgba(91,71,137,0.2);border-radius:50%;flex-shrink:0;position:relative;z-index:1;display:flex;align-items:center;justify-content:center;transition:all 0.25s}
 .opt.selected .opt-selector{border-color:var(--purple);background:var(--purple)}
 .opt.selected .opt-selector::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
@@ -227,7 +227,7 @@
 .btn-consult{display:inline-flex;align-items:center;gap:12px;background:transparent;border:1px solid rgba(196,168,130,0.35);color:var(--gold);font-family:var(--sans);font-weight:300;letter-spacing:0.24em;font-size:0.58rem;text-transform:uppercase;cursor:pointer;padding:15px 28px;text-decoration:none;transition:all 0.3s ease;position:relative;z-index:1}
 .btn-consult:hover{background:rgba(196,168,130,0.1);border-color:var(--gold)}
 
-  /* Footer */
+/* Footer */
 .results-footer{border-top:1px solid rgba(91,71,137,0.1);padding-top:44px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
 .footer-quote{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--text-soft)}
 .footer-btns{display:flex;gap:12px;flex-wrap:wrap}
@@ -276,7 +276,7 @@
   Free UK shipping on your first order · Use code <strong>ROVEYS</strong> at checkout · UK only
 </div>
 
-  <!-- ── NAV ── -->
+<!-- ── NAV ── -->
 <nav class="nav-bar">
   <a href="https://roveys.co.uk" class="nav-logo">ROVEYS</a>
   <a href="https://roveys.co.uk/e-shop" class="nav-link">Explore</a>
@@ -315,12 +315,7 @@
       <span class="btn-discover-arrow">→</span>
     </button>
 
-    <div class="intro-stats anim anim-7">
-      <div class="stat"><div class="stat-num">7</div><div class="stat-label">Questions</div></div>
-      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Profiles</div></div>
-      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Picks for You</div></div>
-      <div class="stat"><div class="stat-num">2'</div><div class="stat-label">To Complete</div></div>
-    </div>
+
   </div>
 
   <!-- ════ QUIZ ════ -->
@@ -341,11 +336,12 @@
     <div class="q-step active" data-q="0" data-chapter="Mood &amp; Personality">
       <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Mood &amp; Personality</span></div>
       <h2 class="q-text">How would you describe<br>your <em>inner world?</em></h2>
+      <p class="q-hint">✦ Choose up to two that resonate</p>
       <div class="options">
-        <button class="opt" onclick="select(this,0,0)"><div class="opt-icon-wrap">🌙</div><div class="opt-text"><div class="opt-title">Mysterious &amp; Sensual</div><div class="opt-desc">Drawn to depth, shadows and quiet allure</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,0,1)"><div class="opt-icon-wrap">🌸</div><div class="opt-text"><div class="opt-title">Romantic &amp; Dreamy</div><div class="opt-desc">Soft, poetic and warm at heart</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,0,2)"><div class="opt-icon-wrap">⚡</div><div class="opt-text"><div class="opt-title">Bold &amp; Confident</div><div class="opt-desc">Unapologetic, powerful, unforgettable</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,0,3)"><div class="opt-icon-wrap">🌿</div><div class="opt-text"><div class="opt-title">Calm &amp; Grounded</div><div class="opt-desc">Serene, nature-loving, effortlessly present</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="0" onclick="select(this,0,0)"><div class="opt-icon-wrap">🌙</div><div class="opt-text"><div class="opt-title">Mysterious &amp; Sensual</div><div class="opt-desc">Drawn to depth, shadows and quiet allure</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="1" onclick="select(this,0,1)"><div class="opt-icon-wrap">🌸</div><div class="opt-text"><div class="opt-title">Romantic &amp; Dreamy</div><div class="opt-desc">Soft, poetic and warm at heart</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="2" onclick="select(this,0,2)"><div class="opt-icon-wrap">⚡</div><div class="opt-text"><div class="opt-title">Bold &amp; Confident</div><div class="opt-desc">Unapologetic, powerful, unforgettable</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="3" onclick="select(this,0,3)"><div class="opt-icon-wrap">🌿</div><div class="opt-text"><div class="opt-title">Calm &amp; Grounded</div><div class="opt-desc">Serene, nature-loving, effortlessly present</div></div><div class="opt-selector"></div></button>
       </div>
     </div>
 
@@ -353,11 +349,12 @@
     <div class="q-step" data-q="1" data-chapter="Occasion">
       <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Occasion</span></div>
       <h2 class="q-text">When do you want your scent<br>to <em>speak for you?</em></h2>
+      <p class="q-hint">✦ Choose up to two that resonate</p>
       <div class="options">
-        <button class="opt" onclick="select(this,1,0)"><div class="opt-icon-wrap">🕯️</div><div class="opt-text"><div class="opt-title">Date Night</div><div class="opt-desc">Intimate, magnetic, unforgettable</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,1,1)"><div class="opt-icon-wrap">💼</div><div class="opt-text"><div class="opt-title">Office &amp; Professional</div><div class="opt-desc">Polished, refined, quietly powerful</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,1,2)"><div class="opt-icon-wrap">☀️</div><div class="opt-text"><div class="opt-title">Everyday Elegance</div><div class="opt-desc">Your signature, worn every single day</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,1,3)"><div class="opt-icon-wrap">🥂</div><div class="opt-text"><div class="opt-title">Special Occasions</div><div class="opt-desc">Events and moments that must last</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="0" onclick="select(this,1,0)"><div class="opt-icon-wrap">🕯️</div><div class="opt-text"><div class="opt-title">Date Night</div><div class="opt-desc">Intimate, magnetic, unforgettable</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="1" onclick="select(this,1,1)"><div class="opt-icon-wrap">💼</div><div class="opt-text"><div class="opt-title">Office &amp; Professional</div><div class="opt-desc">Polished, refined, quietly powerful</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="2" onclick="select(this,1,2)"><div class="opt-icon-wrap">☀️</div><div class="opt-text"><div class="opt-title">Everyday Elegance</div><div class="opt-desc">Your signature, worn every single day</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="3" onclick="select(this,1,3)"><div class="opt-icon-wrap">🥂</div><div class="opt-text"><div class="opt-title">Special Occasions</div><div class="opt-desc">Events and moments that must last</div></div><div class="opt-selector"></div></button>
       </div>
     </div>
 
@@ -365,11 +362,12 @@
     <div class="q-step" data-q="2" data-chapter="Scent Family">
       <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Scent Family</span></div>
       <h2 class="q-text">Which scent world<br><em>calls to you?</em></h2>
+      <p class="q-hint">✦ Choose up to two that resonate</p>
       <div class="options">
-        <button class="opt" onclick="select(this,2,0)"><div class="opt-icon-wrap">🌺</div><div class="opt-text"><div class="opt-title">Floral</div><div class="opt-desc">Rose, jasmine, peony; soft and feminine</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,2,1)"><div class="opt-icon-wrap">🪵</div><div class="opt-text"><div class="opt-title">Woody &amp; Earthy</div><div class="opt-desc">Sandalwood, cedar, oud, vetiver</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,2,2)"><div class="opt-icon-wrap">🔮</div><div class="opt-text"><div class="opt-title">Oriental &amp; Spiced</div><div class="opt-desc">Amber, musk, vanilla, incense</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,2,3)"><div class="opt-icon-wrap">🌊</div><div class="opt-text"><div class="opt-title">Fresh &amp; Aquatic</div><div class="opt-desc">Citrus, sea air, green tea</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="0" onclick="select(this,2,0)"><div class="opt-icon-wrap">🌺</div><div class="opt-text"><div class="opt-title">Floral</div><div class="opt-desc">Rose, jasmine, peony; soft and feminine</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="1" onclick="select(this,2,1)"><div class="opt-icon-wrap">🪵</div><div class="opt-text"><div class="opt-title">Woody &amp; Earthy</div><div class="opt-desc">Sandalwood, cedar, oud, vetiver</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="2" onclick="select(this,2,2)"><div class="opt-icon-wrap">🔮</div><div class="opt-text"><div class="opt-title">Oriental &amp; Spiced</div><div class="opt-desc">Amber, musk, vanilla, incense</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="3" onclick="select(this,2,3)"><div class="opt-icon-wrap">🌊</div><div class="opt-text"><div class="opt-title">Fresh &amp; Aquatic</div><div class="opt-desc">Citrus, sea air, green tea</div></div><div class="opt-selector"></div></button>
       </div>
     </div>
 
@@ -377,12 +375,13 @@
     <div class="q-step" data-q="3" data-chapter="Scent Strength">
       <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Scent Strength</span></div>
       <h2 class="q-text">What speaks<br>to your <em>soul?</em></h2>
+      <p class="q-hint">✦ Choose up to two that resonate</p>
       <div class="options">
-        <button class="opt" onclick="select(this,3,0)"><div class="opt-icon-wrap">🌬️</div><div class="opt-text"><div class="opt-title">Light &amp; Airy</div><div class="opt-desc">Fresh, clean, effortless; like a second skin</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,3,1)"><div class="opt-icon-wrap">🌸</div><div class="opt-text"><div class="opt-title">Soft &amp; Floral</div><div class="opt-desc">Romantic, delicate, timelessly feminine</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,3,2)"><div class="opt-icon-wrap">🪵</div><div class="opt-text"><div class="opt-title">Rich &amp; Woody</div><div class="opt-desc">Warm, earthy, quietly sophisticated</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,3,3)"><div class="opt-icon-wrap">🖤</div><div class="opt-text"><div class="opt-title">Dark &amp; Intense</div><div class="opt-desc">Oud, tobacco, leather, smoke; unapologetically bold</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,3,4)"><div class="opt-icon-wrap">🔥</div><div class="opt-text"><div class="opt-title">Bold &amp; Spiced</div><div class="opt-desc">Amber, saffron, resinous, commanding; you came to be noticed</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="0" onclick="select(this,3,0)"><div class="opt-icon-wrap">🌬️</div><div class="opt-text"><div class="opt-title">Light &amp; Airy</div><div class="opt-desc">Fresh, clean, effortless; like a second skin</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="1" onclick="select(this,3,1)"><div class="opt-icon-wrap">🌸</div><div class="opt-text"><div class="opt-title">Soft &amp; Floral</div><div class="opt-desc">Romantic, delicate, timelessly feminine</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="2" onclick="select(this,3,2)"><div class="opt-icon-wrap">🪵</div><div class="opt-text"><div class="opt-title">Rich &amp; Woody</div><div class="opt-desc">Warm, earthy, quietly sophisticated</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="3" onclick="select(this,3,3)"><div class="opt-icon-wrap">🖤</div><div class="opt-text"><div class="opt-title">Dark &amp; Intense</div><div class="opt-desc">Oud, tobacco, leather, smoke; unapologetically bold</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="4" onclick="select(this,3,4)"><div class="opt-icon-wrap">🔥</div><div class="opt-text"><div class="opt-title">Bold &amp; Spiced</div><div class="opt-desc">Amber, saffron, resinous, commanding; you came to be noticed</div></div><div class="opt-selector"></div></button>
       </div>
     </div>
 
@@ -390,10 +389,11 @@
     <div class="q-step" data-q="4" data-chapter="Intensity">
       <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Intensity</span></div>
       <h2 class="q-text">How do you want your<br>fragrance to <em>linger?</em></h2>
+      <p class="q-hint">✦ Choose up to two that resonate</p>
       <div class="options">
-        <button class="opt" onclick="select(this,4,0)"><div class="opt-icon-wrap">🪷</div><div class="opt-text"><div class="opt-title">Whisper-light</div><div class="opt-desc">A soft trail only those close to you catch</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,4,1)"><div class="opt-icon-wrap">💫</div><div class="opt-text"><div class="opt-title">Effortlessly Present</div><div class="opt-desc">Noticed without being announced</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,4,2)"><div class="opt-icon-wrap">🔥</div><div class="opt-text"><div class="opt-title">Commanding</div><div class="opt-desc">You enter the room before you do</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="0" onclick="select(this,4,0)"><div class="opt-icon-wrap">🪷</div><div class="opt-text"><div class="opt-title">Whisper-light</div><div class="opt-desc">A soft trail only those close to you catch</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="1" onclick="select(this,4,1)"><div class="opt-icon-wrap">💫</div><div class="opt-text"><div class="opt-title">Effortlessly Present</div><div class="opt-desc">Noticed without being announced</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="2" onclick="select(this,4,2)"><div class="opt-icon-wrap">🔥</div><div class="opt-text"><div class="opt-title">Commanding</div><div class="opt-desc">You enter the room before you do</div></div><div class="opt-selector"></div></button>
       </div>
     </div>
 
@@ -401,11 +401,12 @@
     <div class="q-step" data-q="5" data-chapter="Your World">
       <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Your World</span></div>
       <h2 class="q-text">Which image resonates<br>with your <em>spirit?</em></h2>
+      <p class="q-hint">✦ Choose up to two that resonate</p>
       <div class="options">
-        <button class="opt" onclick="select(this,5,0)"><div class="opt-icon-wrap">🌙</div><div class="opt-text"><div class="opt-title">Moonlit terrace in Marrakech</div><div class="opt-desc">Exotic, warm, ancient and intoxicating</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,5,1)"><div class="opt-icon-wrap">🌹</div><div class="opt-text"><div class="opt-title">Rose garden at dawn in Paris</div><div class="opt-desc">Romantic, refined, quietly timeless</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,5,2)"><div class="opt-icon-wrap">🌊</div><div class="opt-text"><div class="opt-title">Cliffside in Santorini</div><div class="opt-desc">Airy, free, luminous and clear</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,5,3)"><div class="opt-icon-wrap">🏛️</div><div class="opt-text"><div class="opt-title">Private members' club, London</div><div class="opt-desc">Polished, commanding, effortlessly luxurious</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="0" onclick="select(this,5,0)"><div class="opt-icon-wrap">🌙</div><div class="opt-text"><div class="opt-title">Moonlit terrace in Marrakech</div><div class="opt-desc">Exotic, warm, ancient and intoxicating</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="1" onclick="select(this,5,1)"><div class="opt-icon-wrap">🌹</div><div class="opt-text"><div class="opt-title">Rose garden at dawn in Paris</div><div class="opt-desc">Romantic, refined, quietly timeless</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="2" onclick="select(this,5,2)"><div class="opt-icon-wrap">🌊</div><div class="opt-text"><div class="opt-title">Cliffside in Santorini</div><div class="opt-desc">Airy, free, luminous and clear</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="3" onclick="select(this,5,3)"><div class="opt-icon-wrap">🏛️</div><div class="opt-text"><div class="opt-title">Private members' club, London</div><div class="opt-desc">Polished, commanding, effortlessly luxurious</div></div><div class="opt-selector"></div></button>
       </div>
     </div>
 
@@ -413,15 +414,16 @@
     <div class="q-step" data-q="6" data-chapter="Your Legacy">
       <div class="q-eyebrow"><div class="q-eyebrow-line"></div><span class="q-eyebrow-text">Your Legacy</span></div>
       <h2 class="q-text">The feeling you want<br>to <em>leave behind?</em></h2>
+      <p class="q-hint">✦ Choose up to two that resonate</p>
       <div class="options">
-        <button class="opt" onclick="select(this,6,0)"><div class="opt-icon-wrap">💋</div><div class="opt-text"><div class="opt-title">Desire &amp; Intrigue</div><div class="opt-desc">They wonder about you long after</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,6,1)"><div class="opt-icon-wrap">🕊️</div><div class="opt-text"><div class="opt-title">Grace &amp; Serenity</div><div class="opt-desc">Calm, elegant, quietly beautiful</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,6,2)"><div class="opt-icon-wrap">👑</div><div class="opt-text"><div class="opt-title">Power &amp; Presence</div><div class="opt-desc">Regal, iconic, impossible to forget</div></div><div class="opt-selector"></div></button>
-        <button class="opt" onclick="select(this,6,3)"><div class="opt-icon-wrap">🌿</div><div class="opt-text"><div class="opt-title">Comfort &amp; Warmth</div><div class="opt-desc">Like home; safe, soft, welcoming</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="0" onclick="select(this,6,0)"><div class="opt-icon-wrap">💋</div><div class="opt-text"><div class="opt-title">Desire &amp; Intrigue</div><div class="opt-desc">They wonder about you long after</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="1" onclick="select(this,6,1)"><div class="opt-icon-wrap">🕊️</div><div class="opt-text"><div class="opt-title">Grace &amp; Serenity</div><div class="opt-desc">Calm, elegant, quietly beautiful</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="2" onclick="select(this,6,2)"><div class="opt-icon-wrap">👑</div><div class="opt-text"><div class="opt-title">Power &amp; Presence</div><div class="opt-desc">Regal, iconic, impossible to forget</div></div><div class="opt-selector"></div></button>
+        <button class="opt" data-val="3" onclick="select(this,6,3)"><div class="opt-icon-wrap">🌿</div><div class="opt-text"><div class="opt-title">Comfort &amp; Warmth</div><div class="opt-desc">Like home; safe, soft, welcoming</div></div><div class="opt-selector"></div></button>
       </div>
     </div>
 
-       <div class="q-nav">
+    <div class="q-nav">
       <button class="btn-back" id="btn-back" onclick="goBack()" style="visibility:hidden">← Back</button>
       <button class="btn-next" id="btn-next" onclick="goNext()" disabled>
         <span id="btn-next-label">Continue</span>
@@ -488,16 +490,18 @@
       <div class="dna-tags" id="r-traits"></div>
     </div>
 
+    <div id="r-secondary"></div>
+
     <div class="section-label">
       <span class="section-label-text">Curated for You</span>
       <div class="section-label-rule"></div>
     </div>
 
     <div style="background:var(--purple-mist);border-left:3px solid var(--gold);padding:18px 22px;margin-bottom:32px;font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--purple);line-height:1.75;">
-      ✦ &nbsp;A note from Roveys — these recommendations are your starting point. The final test is always on your skin. Every fragrance tells a different story on different skin chemistry. Date it properly before you commit. That is exactly what we are here for.
+      ✦ &nbsp;A note from Roveys; these recommendations are your starting point. The final test is always on your skin. Every fragrance tells a different story on different skin chemistry. Date it properly before you commit. That is exactly what we are here for.
     </div>
 
-       <div class="rec-list" id="r-recs"></div>
+    <div class="rec-list" id="r-recs"></div>
 
     <div class="consult-wrap">
       <div class="consult-kicker">✦ Want Something More Personal?</div>
@@ -509,7 +513,7 @@
     </div>
 
     <div class="results-footer">
-      <p class="footer-quote">"Try it. Love it. Commit!"</p>
+      <p class="footer-quote">"Date the Fragrance. ✦"</p>
       <div class="footer-btns">
         <a class="btn-shop" href="https://roveys.co.uk/e-shop" target="_blank"><span>Shop the Collection</span></a>
         <button class="btn-retake" onclick="retake()">Retake Quiz</button>
@@ -608,7 +612,7 @@ const products=[
     ]
   },
   {
- id:"freshie",
+    id:"freshie",
     name:"Hey Freshie",
     sub:"The Niche Fresh Edit",
     type:"5 × 10ml · Niche Collection",
@@ -646,7 +650,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/delina-30ml",
     desc:"A celebration of everlasting femininity. Turkish rose lightened by lily of the valley and peony; enriched by lychee, rhubarb and bergamot. Seductive cashmere wood and soft velvety musk. Contemporary, timeless and utterly captivating.",
     bottles:[
-      {house:"Parfums de Marly",name:"Delina",vibe:"Turkish rose, peony, cashmere wood — pure feminine elegance"}
+      {house:"Parfums de Marly",name:"Delina",vibe:"Turkish rose, peony, cashmere wood; pure feminine elegance"}
     ]
   },
   {
@@ -691,7 +695,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/roja-aoud-extraordinaire-10ml",
     desc:"Fruity, flirty, and just a little naughty. Juicy pineapple, peach and plum with a decadent twist of Oud, mango and candyfloss. Mini in size, major in attitude.",
     bottles:[
-      {house:"Roja Parfums",name:"Aoud Extraordinaire",vibe:"Pineapple, peach, oud, mango, candyfloss — the IT girl's oud"}
+      {house:"Roja Parfums",name:"Aoud Extraordinaire",vibe:"Pineapple, peach, oud, mango, candyfloss; the IT girl's oud"}
     ]
   },
   {
@@ -703,7 +707,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/miniatures",
     desc:"Fresh and invigorating with tangy rhubarb, juniper berries and grapefruit evolving into an earthy vibe with musky goodness and woody vetiver base. Perfect for starting the day.",
     bottles:[
-      {house:"Roja Parfums",name:"Elysium Eau Intense",vibe:"Rhubarb, grapefruit, vetiver — daytime sophistication"}
+      {house:"Roja Parfums",name:"Elysium Eau Intense",vibe:"Rhubarb, grapefruit, vetiver; daytime sophistication"}
     ]
   },
   {
@@ -715,7 +719,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/complex-2020-10ml-boadicea-the-victoria",
     desc:"Dark, confident and irresistibly seductive. Sage, violet and incense deepen into oud, warm musks and animalic leather. Not a safe choice. But the right one never is.",
     bottles:[
-      {house:"Boadicea the Victorious",name:"Complex 2020",vibe:"Sage, oud, leather, incense — the slow burn"}
+      {house:"Boadicea the Victorious",name:"Complex 2020",vibe:"Sage, oud, leather, incense; the slow burn"}
     ]
   },
   {
@@ -727,7 +731,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/isola-verde-10ml-roja-parfums",
     desc:"A private island, bottled. Guava and sparkling citrus over magnolia and osmanthus; deepened by blond tobacco, amber musks and rum-soaked richness. Unisex. Addictive. Sun-kissed.",
     bottles:[
-      {house:"Roja Parfums",name:"Isola Verde",vibe:"Guava, tobacco, osmanthus — tropical meets grown-up elegance"}
+      {house:"Roja Parfums",name:"Isola Verde",vibe:"Guava, tobacco, osmanthus; tropical meets grown-up elegance"}
     ]
   },
   {
@@ -739,7 +743,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/valiant-10ml-miniature-boadicea-the-victorious",
     desc:"Smell like a billionaire. Mandarin and neroli kiss luminous florals before melting into vanilla, amber and sandalwood. Rare, iconic and unapologetically luxurious.",
     bottles:[
-      {house:"Boadicea the Victorious",name:"Valiant",vibe:"Citrus, jasmine, vanilla, sandalwood — billionaire energy"}
+      {house:"Boadicea the Victorious",name:"Valiant",vibe:"Citrus, jasmine, vanilla, sandalwood; billionaire energy"}
     ]
   },
   {
@@ -751,11 +755,11 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/xn--sand-and-skin-by-floraku--30ml-eau-de-parfum-mde92877a",
     desc:"Warm, intimate and quietly addictive. Creamy Madagascan vanilla and soft benzoin wrapped in ylang-ylang. Smells like sun on bare skin; effortless, sensual, impossible to forget.",
     bottles:[
-      {house:"Floraïku",name:"Sand & Skin",vibe:"Vanilla, benzoin, ylang-ylang — skin after a sun-kissed day"}
+      {house:"Floraïku",name:"Sand & Skin",vibe:"Vanilla, benzoin, ylang-ylang; skin after a sun-kissed day"}
     ]
   },
   {
-   id:"diaghilev",
+    id:"diaghilev",
     name:"Diaghilev",
     sub:"Roja Parfums · 7.5ml Miniature",
     type:"Roja Parfums · Parfum · 7.5ml",
@@ -763,7 +767,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/diaghilev-75ml-roja-parfums",
     desc:"Success bottled. Rich, magnetic, complex and unapologetically dominant. Bergamot and rose deepen into oakmoss, leather, ambergris and musk. For the one who leads, not follows.",
     bottles:[
-      {house:"Roja Parfums",name:"Diaghilev",vibe:"Bergamot, rose, oakmoss, leather — authority in a bottle"}
+      {house:"Roja Parfums",name:"Diaghilev",vibe:"Bergamot, rose, oakmoss, leather; authority in a bottle"}
     ]
   },
   {
@@ -775,7 +779,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/valalya",
     desc:"It comes in soft but stays like a memory. White peach, bergamot and orange flower melt into musk and Akigalawood. Effortless, captivating, seduction served softly.",
     bottles:[
-      {house:"Valaya",name:"Valaya",vibe:"White peach, orange flower, musk — a scent like falling in love"}
+      {house:"Valaya",name:"Valaya",vibe:"White peach, orange flower, musk; a scent like falling in love"}
     ]
   },
   {
@@ -787,7 +791,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/ardent-10ml--boadicea-the-victorious",
     desc:"Not your typical floral. Warm, magnetic and unforgettable. Turns heads in elevators. Makes people say your name slower. Bold, alluring and just a little dangerous.",
     bottles:[
-      {house:"Boadicea the Victorious",name:"Ardent",vibe:"Rich romantic florals, warm earth — fire and elegance"}
+      {house:"Boadicea the Victorious",name:"Ardent",vibe:"Rich romantic florals, warm earth; fire and elegance"}
     ]
   },
   {
@@ -799,7 +803,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/alexandria-ii-by-xerjoff-15ml",
     desc:"A cult classic oud that hits different. Cinnamon and apple open into Bulgarian rose and cedarwood; then creamy vanilla meets sacred Laotian oud. Regal, smooth, addictive.",
     bottles:[
-      {house:"Xerjoff",name:"Alexandria II",vibe:"Cinnamon, rose, Laotian oud, vanilla — a legacy scent"}
+      {house:"Xerjoff",name:"Alexandria II",vibe:"Cinnamon, rose, Laotian oud, vanilla; a legacy scent"}
     ]
   },
   {
@@ -811,7 +815,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/elysium-pour-femme-10ml-by-roja-parfums",
     desc:"Juicy fruit, luxe florals and creamy vanilla. Soft glam with a killer edge. Bergamot, peach and blackberry bloom into jasmine, peony and magnolia. Your new signature scent.",
     bottles:[
-      {house:"Roja Parfums",name:"Elysium Pour Femme",vibe:"Peach, jasmine, vanilla, sandalwood — effortlessly chic"}
+      {house:"Roja Parfums",name:"Elysium Pour Femme",vibe:"Peach, jasmine, vanilla, sandalwood; effortlessly chic"}
     ]
   },
   {
@@ -823,7 +827,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/parfum",
     desc:"Bold, magnetic and for the woman who knows desire calls when darkness falls. Rich oriental warmth; creamy florals, caramel warmth and smooth woods. A power move.",
     bottles:[
-      {house:"Roja Parfums",name:"Parfum de la Nuit No. 2",vibe:"Caramel, florals, leather, woods — classy and compelling"}
+      {house:"Roja Parfums",name:"Parfum de la Nuit No. 2",vibe:"Caramel, florals, leather, woods; classy and compelling"}
     ]
   },
   {
@@ -835,7 +839,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/rendez-vous-chez-harrods-20ml",
     desc:"Sweet caramel and romantic rose melt into the deep embrace of Cambodian Oud. Rich, loud, lingering. For the woman whose presence is undeniable and entirely her own.",
     bottles:[
-      {house:"Harrods",name:"Rendez-Vous Chez Harrods",vibe:"Caramel, rose, Cambodian oud — sweet meets strength"}
+      {house:"Harrods",name:"Rendez-Vous Chez Harrods",vibe:"Caramel, rose, Cambodian oud; sweet meets strength"}
     ]
   },
   {
@@ -847,7 +851,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/sweetie-aoud-75ml-by-roja-parfums-7",
     desc:"Golden caramel, toasted almonds and buttery pastry melt into smoky oud, incense and worn leather. Arabian nights draped in Parisian elegance. Bold. Boujie. Unforgettable.",
     bottles:[
-      {house:"Roja Parfums",name:"Sweetie Aoud",vibe:"Caramel, almond, oud, leather — gourmand seduction"}
+      {house:"Roja Parfums",name:"Sweetie Aoud",vibe:"Caramel, almond, oud, leather; gourmand seduction"}
     ]
   },
   {
@@ -859,7 +863,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/blue-sapphire",
     desc:"Pure opulence in a bottle. Sparkling citrus meets rose and jasmine resting on oud, amber and patchouli. Regal, refined and unforgettable.",
     bottles:[
-      {house:"Boadicea the Victorious",name:"Blue Sapphire",vibe:"Citrus, rose, oud, amber — prestige and power"}
+      {house:"Boadicea the Victorious",name:"Blue Sapphire",vibe:"Citrus, rose, oud, amber; prestige and power"}
     ]
   },
   {
@@ -871,7 +875,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/oriana-30ml",
     desc:"Sweet, stunning and a little spoiled. Mandarin, raspberry mousse and orange blossom melt into musk and whipped cream. Rich-girl energy that lingers.",
     bottles:[
-      {house:"Parfums de Marly",name:"Oriana",vibe:"Raspberry, orange blossom, musk — flirty floral gourmand"}
+      {house:"Parfums de Marly",name:"Oriana",vibe:"Raspberry, orange blossom, musk; flirty floral gourmand"}
     ]
   },
   {
@@ -945,7 +949,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/valalya",
     desc:"It comes in soft but stays like a memory. White peach, bergamot and sunlit mandarin melt into orange flower and vetiver; finishing in musk and Akigalawood. Effortless, radiant and impossible to forget.",
     bottles:[
-      {house:"Valaya",name:"Valaya 30ml",vibe:"White peach, orange flower, musk — seduction served softly"}
+      {house:"Valaya",name:"Valaya 30ml",vibe:"White peach, orange flower, musk; seduction served softly"}
     ]
   },
   {
@@ -958,7 +962,7 @@ const products=[
     desc:"Four powerful personalities; each one unforgettable. Defender, Oud Sapphire, Knight of Love and Lavish. Four dates. Four moods. One unforgettable introduction.",
     bottles:[
       {house:"Boadicea the Victorious",name:"Defender",vibe:"Confident, commanding, effortlessly powerful"},
-      {house:"Boadicea the Victorious",name:"Oud Sapphire",vibe:"Dark, rich, magnetic — jewel-toned oud"},
+      {house:"Boadicea the Victorious",name:"Oud Sapphire",vibe:"Dark, rich, magnetic; jewel-toned oud"},
       {house:"Boadicea the Victorious",name:"Knight of Love",vibe:"Warm, sensual, quietly seductive"},
       {house:"Boadicea the Victorious",name:"Lavish",vibe:"Decadent, bold, made to be noticed"}
     ]
@@ -972,7 +976,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/elysium-pour-femme-10ml-by-roja-parfums",
     desc:"Juicy fruit, luxe florals and creamy vanilla. Soft glam with a killer edge. Bergamot, peach and blackberry bloom into jasmine, peony and magnolia; finishing in sandalwood and vanilla musk.",
     bottles:[
-      {house:"Roja Parfums",name:"Elysium Pour Femme",vibe:"Peach, jasmine, vanilla — effortlessly chic and feminine"}
+      {house:"Roja Parfums",name:"Elysium Pour Femme",vibe:"Peach, jasmine, vanilla; effortlessly chic and feminine"}
     ]
   },
 
@@ -983,9 +987,9 @@ const products=[
     type:"Strangelove NYC · EDP · 15ml · £185",
     price:"£185",
     url:"https://roveys.co.uk/e-shop/ols/products/melt-my-heart-by-strangelove-nyc",
-    desc:"This is oud at its most intimate. Smooth. Addictive. Dressed in silk. Ginger and nutmeg warm the opening, softened by dark chocolate — rich and romantic. Creamy orris butter and ylang-ylang melt into a rare, pure oud; quiet, grounded, impossibly elegant.",
+    desc:"This is oud at its most intimate. Smooth. Addictive. Dressed in silk. Ginger and nutmeg warm the opening, softened by dark chocolate; rich and romantic. Creamy orris butter and ylang-ylang melt into a rare, pure oud; quiet, grounded, impossibly elegant.",
     bottles:[
-      {house:"Strangelove NYC",name:"Melt My Heart",vibe:"Ginger, chocolate, orris, oud — intimate and unforgettable"}
+      {house:"Strangelove NYC",name:"Melt My Heart",vibe:"Ginger, chocolate, orris, oud; intimate and unforgettable"}
     ]
   },
   {
@@ -997,7 +1001,7 @@ const products=[
     url:"https://roveys.co.uk/e-shop/ols/products/blue-sapphire",
     desc:"Pure opulence in miniature. Sparkling citrus and luminous rose open into jasmine before settling into oud, amber and patchouli. Regal. Refined. The fragrance of quiet power worn with complete certainty. Long lasting. Commanding. Impossible to ignore.",
     bottles:[
-      {house:"Boadicea the Victorious",name:"Blue Sapphire",vibe:"Citrus, rose, oud, amber — prestige and commanding presence"}
+      {house:"Boadicea the Victorious",name:"Blue Sapphire",vibe:"Citrus, rose, oud, amber; prestige and commanding presence"}
     ]
   },
   {
@@ -1007,13 +1011,13 @@ const products=[
     type:"5 × 10ml · Niche Oud Collection · £265",
     price:"£265",
     url:"https://roveys.co.uk/e-shop/ols/products/roveys-in-the-mood-for-oud",
-    desc:"For the self assured oud lover who does not shy away from the centre of attention. Five exceptional niche fragrances — each one a different expression of oud at its finest. Date them all. Decide which full bottle deserves a permanent place in your wardrobe.",
+    desc:"For the self assured oud lover who does not shy away from the centre of attention. Five exceptional niche fragrances; each one a different expression of oud at its finest. Date them all. Decide which full bottle deserves a permanent place in your wardrobe.",
     bottles:[
-      {house:"Maison Francis Kurkdjian",name:"Oud Satin Mood Extrait",vibe:"Rose, amber, oud — the most wearable oud in the set"},
-      {house:"Strangelove NYC",name:"Fall Into Stars",vibe:"Oud, frankincense, smoke — dark, celestial and deeply poetic"},
-      {house:"Amouage",name:"Purpose",vibe:"Frankincense, oud, leather — bold, commanding, a declaration"},
-      {house:"Parfums de Marly",name:"Delina Exclusif",vibe:"Vanilla, litchi, oud — the most seductive in the edit"},
-      {house:"Roja Parfums",name:"Amber Aoud",vibe:"Warm amber, oud — regal, rich and entirely commanding"}
+      {house:"Maison Francis Kurkdjian",name:"Oud Satin Mood Extrait",vibe:"Rose, amber, oud; the most wearable oud in the set"},
+      {house:"Strangelove NYC",name:"Fall Into Stars",vibe:"Oud, frankincense, smoke; dark, celestial and deeply poetic"},
+      {house:"Amouage",name:"Purpose",vibe:"Frankincense, oud, leather; bold, commanding, a declaration"},
+      {house:"Parfums de Marly",name:"Delina Exclusif",vibe:"Vanilla, litchi, oud; the most seductive in the edit"},
+      {house:"Roja Parfums",name:"Amber Aoud",vibe:"Warm amber, oud; regal, rich and entirely commanding"}
     ]
   },
   {
@@ -1023,9 +1027,9 @@ const products=[
     type:"Boadicea the Victorious · EDP · 10ml · £69.50",
     price:"£69.50",
     url:"https://roveys.co.uk/e-shop/ols/products/aqua-sapphire-boadicea-the-victorious-10ml",
-    desc:"The ocean, dressed in luxury. Aquatic notes and pineapple open with sparkling optimistic energy — like sunlight hitting deep water. Rose de Mai adds the most prized rose in perfumery. Moss grounds everything with quiet earthy depth. Contemporary. Elegant. Quietly captivating.",
+    desc:"The ocean, dressed in luxury. Aquatic notes and pineapple open with sparkling optimistic energy; like sunlight hitting deep water. Rose de Mai adds the most prized rose in perfumery. Moss grounds everything with quiet earthy depth. Contemporary. Elegant. Quietly captivating.",
     bottles:[
-      {house:"Boadicea the Victorious",name:"Aqua Sapphire",vibe:"Pineapple, rose de mai, aquatic, moss — luminous fresh luxury"}
+      {house:"Boadicea the Victorious",name:"Aqua Sapphire",vibe:"Pineapple, rose de mai, aquatic, moss; luminous fresh luxury"}
     ]
   },
   {
@@ -1039,6 +1043,50 @@ const products=[
     bottles:[
       {house:"Roja Parfums",name:"Sweetie Aoud",vibe:"Powerful, seductive; a statement before you speak"},
       {house:"Xerjoff",name:"Alexandria II",vibe:"Enchanting, magnetic; made to be remembered"}
+    ]
+  },
+  {
+    id:"queen-of-silk",
+    name:"Queen of Silk",
+    sub:"Creed · 10ml",
+    type:"Creed · Eau de Parfum · 10ml · £55",
+    price:"£55",
+    url:"https://roveys.co.uk/e-shop/ols/products/queen-of-silk---creed",
+    desc:"The definition of liquid silk. Inspired by the ancient Silk Road, this mesmerising Creed creation opens with osmanthus, magnolia and saffron; a shimmering, floral embrace. Tuberose and passionfruit deepen into agarwood and patchouli before vanilla, myrrh and cedarwood create a sensual, lingering warmth. Every note a luxurious whisper of sophistication.",
+    bottles:[
+      {house:"Creed",name:"Queen of Silk",vibe:"Osmanthus, magnolia, vanilla, cedarwood; liquid silk on skin"}
+    ]
+  },
+  {
+    id:"it-girl",
+    name:"The IT Girl Starter Set",
+    sub:"5 × 5ml Roveys Flacons",
+    type:"5 × 5ml · Curated Luxury Collection · £185",
+    price:"£185",
+    url:"https://roveys.co.uk/e-shop/ols/products/the-it-girl-5-luxury-perfume-starter-set-10ml-each-zero-commitments-until-youre-obsessed",
+    desc:"Five high-end luxury perfumes in 5ml Roveys Flacons; perfect for scent flirting. A curated collection for the woman who takes her time, tests her options and smells like the moment. Try before you buy. Date them first. Decide who is the one.",
+    bottles:[
+      {house:"Parfums de Marly",name:"Delina",vibe:"Lychee, Turkish rose, vanilla musk; soft, flirtatious, secretly powerful"},
+      {house:"Guerlain",name:"Oud Nude",vibe:"Sandalwood, oud, creamy florals; elegant, addictive, dangerously close to skin"},
+      {house:"Xerjoff",name:"Torino 21",vibe:"Mint, basil, blackcurrant, jasmine; fresh, crisp, owns the room"},
+      {house:"Tiziana Terenzi",name:"Kuma",vibe:"Passionfruit, raspberry, vanilla, sandalwood; goddess energy with edge"},
+      {house:"Matiere Premiere",name:"Vanilla Powder",vibe:"Vanilla, coconut, palo santo; comfort with a twist, effortlessly unforgettable"}
+    ]
+  },
+  {
+    id:"forbidden-fruit",
+    name:"The Forbidden Fruit Edit",
+    sub:"5 × 10ml · The Fruit Lovers Edit",
+    type:"5 × 10ml · Niche Collection · Full-Sized Value £1,400+",
+    price:"£245",
+    url:"https://roveys.co.uk/e-shop/ols/products/fruit-fest",
+    desc:"Fruit; but not as you know it. Not sweet. Not simple. Not predictable. This is fruit dipped in oud, wrapped in leather, soaked in cognac and kissed by the first light of morning. Five extraordinary niche fragrances for the fruit fragrance lover ready to take it several notches up and make every embrace unforgettable.",
+    bottles:[
+      {house:"Nishane",name:"Zenne",vibe:"Wild, untamed, completely captivating; fruit at its most boundary-pushing"},
+      {house:"Xerjoff",name:"La Capitale",vibe:"Strawberry, caramel, leather, saffron; sweet sophistication meets Moscow's spirit"},
+      {house:"Memoirs of a Perfume Collector",name:"Trouble in Paradise",vibe:"Mango, cognac, rum, leather, oud; bold, boozy, completely unforgettable"},
+      {house:"Fragrance du Bois",name:"Oud Jaune Intense",vibe:"Pineapple, jasmine, 100% pure organic oud; intoxicating oriental luxury"},
+      {house:"Louis Vuitton",name:"Le Jour Se Lève",vibe:"Mandarin, sambac jasmine, blackcurrant; the first light of dawn, bottled"}
     ]
   }
 ];
@@ -1081,24 +1129,46 @@ const archetypes=[
   }
 ];
 
-function getArchetype(){
+function getVals(q){
+  const a = answers[q];
+  if(a===null) return [];
+  if(Array.isArray(a)) return a;
+  return [a];
+}
+
+function getArchetypes(){
   const s=[0,0,0,0,0];
-  const m=answers[0], sc=answers[2], st=answers[3], fe=answers[6];
-  if(m===0){s[0]+=3;s[4]+=1} if(m===1){s[1]+=3} if(m===2){s[4]+=3;s[0]+=1} if(m===3){s[3]+=3;s[2]+=1}
-  if(sc===0){s[1]+=2;s[2]+=1} if(sc===1){s[3]+=2;s[4]+=1} if(sc===2){s[0]+=2;s[4]+=1} if(sc===3){s[2]+=2;s[3]+=1}
-  if(st===0){s[2]+=2;s[1]+=1} if(st===1){s[1]+=3} if(st===2){s[3]+=2;s[2]+=1} if(st===3){s[0]+=3;s[4]+=1} if(st===4){s[4]+=3;s[0]+=1}
-  if(fe===0){s[0]+=2} if(fe===1){s[1]+=2;s[3]+=1} if(fe===2){s[4]+=2} if(fe===3){s[3]+=2;s[1]+=1}
-  return s.indexOf(Math.max(...s));
+  const ms=getVals(0), sc=getVals(2), st=getVals(3), fe=getVals(6);
+  ms.forEach(m=>{
+    if(m===0){s[0]+=3;s[4]+=1} if(m===1){s[1]+=3} if(m===2){s[4]+=3;s[0]+=1} if(m===3){s[3]+=3;s[2]+=1}
+  });
+  sc.forEach(c=>{
+    if(c===0){s[1]+=2;s[2]+=1} if(c===1){s[3]+=2;s[4]+=1} if(c===2){s[0]+=2;s[4]+=1} if(c===3){s[2]+=2;s[3]+=1}
+  });
+  st.forEach(t=>{
+    if(t===0){s[2]+=2;s[1]+=1} if(t===1){s[1]+=3} if(t===2){s[3]+=2;s[2]+=1} if(t===3){s[0]+=3;s[4]+=1} if(t===4){s[4]+=3;s[0]+=1}
+  });
+  fe.forEach(f=>{
+    if(f===0){s[0]+=2} if(f===1){s[1]+=2;s[3]+=1} if(f===2){s[4]+=2} if(f===3){s[3]+=2;s[1]+=1}
+  });
+  const primary = s.indexOf(Math.max(...s));
+  const scopy = [...s];
+  scopy[primary] = -1;
+  const secondary = scopy.indexOf(Math.max(...scopy));
+  return {primary, secondary, scores: s};
+}
+
+function getArchetype(){
+  return getArchetypes().primary;
 }
 
 function getProduct(id){ return products.find(p=>p.id===id); }
 
 function shuffle(arr){ return arr.sort(()=>Math.random()-0.5); }
 function pick3(pool){ return shuffle([...pool]).slice(0,3); }
+function pick2(pool){ return shuffle([...pool]).slice(0,2); }
 
 function getVariantRecs(archIndex, strength){
-  // strength: 0=light/airy, 1=soft/floral, 2=rich/woody, 3=dark/intense, 4=bold/spiced
-  // Each pool has 5+ products — 3 are randomly selected each time
   const variants = [
     // 0: Midnight Muse
     {
@@ -1108,15 +1178,15 @@ function getVariantRecs(archIndex, strength){
     },
     // 1: Romantic in Bloom
     {
-      soft:   ["roses","delina-30ml","elysium-femme-10ml","oriana","roja-womens"],
-      rich:   ["roja-womens","roses","oriana","delina-30ml","elysium-femme"],
-      default:["roses","roja-womens","delina-30ml","oriana","elysium-femme-10ml"]
+      soft:   ["roses","delina-30ml","elysium-femme-10ml","oriana","queen-of-silk","it-girl"],
+      rich:   ["roja-womens","roses","oriana","delina-30ml","queen-of-silk"],
+      default:["roses","roja-womens","delina-30ml","oriana","queen-of-silk"]
     },
     // 2: Luminous One
     {
-      light:  ["freshie","valaya-30ml","isola-verde","aqua-sapphire","sand-skin"],
-      rich:   ["freshie","elysium-femme","sand-skin","aqua-sapphire","isola-verde"],
-      default:["freshie","roja-womens","isola-verde","aqua-sapphire","valaya-30ml"]
+      light:  ["freshie","valaya-30ml","isola-verde","aqua-sapphire","sand-skin","it-girl"],
+      rich:   ["freshie","elysium-femme","sand-skin","aqua-sapphire","it-girl"],
+      default:["freshie","roja-womens","isola-verde","aqua-sapphire","it-girl"]
     },
     // 3: Grounded Soul
     {
@@ -1126,9 +1196,9 @@ function getVariantRecs(archIndex, strength){
     },
     // 4: Sovereign
     {
-      bold:   ["alexandria-ii","sweetie-aoud","aoud-collection","blue-sapphire-new","oud-frankincense"],
-      dark:   ["valiant","complex-2020","christmas","blue-sapphire-new","oud-frankincense"],
-      default:["aoud-collection","alexandria-ii","sweetie-aoud","blue-sapphire-new","oud-frankincense"]
+      bold:   ["alexandria-ii","sweetie-aoud","aoud-collection","blue-sapphire-new","oud-frankincense","forbidden-fruit"],
+      dark:   ["valiant","complex-2020","christmas","blue-sapphire-new","oud-frankincense","forbidden-fruit"],
+      default:["aoud-collection","alexandria-ii","sweetie-aoud","blue-sapphire-new","forbidden-fruit"]
     }
   ];
   const v = variants[archIndex];
@@ -1139,20 +1209,48 @@ function getVariantRecs(archIndex, strength){
   else if(archIndex===3){ pool = strength===2 ? v.woody : (strength===3||strength===4) ? v.dark : v.default; }
   else if(archIndex===4){ pool = (strength===3||strength===4) ? v.dark : v.bold; }
   else { pool = v.default; }
-  return pick3(pool);
+  return pool;
 }
 
-function buildResults(firstName,arch){
-  const archIndex = archetypes.indexOf(arch);
-  const strength = answers[3] !== null ? answers[3] : 1;
-  const recs = getVariantRecs(archIndex, strength);
-  document.getElementById('r-title').innerHTML=`${arch.label}<br><em>${arch.em}</em>`;
-  document.getElementById('r-tagline').textContent=arch.tagline;
-  document.getElementById('r-desc').textContent=arch.desc;
-  document.getElementById('r-traits').innerHTML=arch.traits.map(t=>`<span class="dna-tag">${t}</span>`).join('');
-  document.getElementById('r-recs').innerHTML=recs.map((pid,i)=>{
+function buildResults(firstName, arch){
+  const {primary, secondary} = getArchetypes();
+  const primaryArch = archetypes[primary];
+  const secondaryArch = archetypes[secondary];
+  const strength = Array.isArray(answers[3]) ? answers[3][0] : (answers[3] !== null ? answers[3] : 1);
+
+  // Get 3 from primary and 2 from secondary
+  const primaryPool = getVariantRecs(primary, strength);
+  const secondaryPool = getVariantRecs(secondary, strength);
+  const primaryPicks = shuffle([...primaryPool]).slice(0,3);
+  const secondaryAvailable = secondaryPool.filter(id => !primaryPicks.includes(id));
+  const secondaryPicks = shuffle([...secondaryAvailable]).slice(0,2);
+
+  // Primary archetype header
+  document.getElementById('r-title').innerHTML=`
+    <div style="font-family:var(--sans);font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-bottom:10px;">✦ Your Primary Scent Profile</div>
+    ${primaryArch.label}<br><em>${primaryArch.em}</em>`;
+  document.getElementById('r-tagline').textContent=primaryArch.tagline;
+  document.getElementById('r-desc').textContent=primaryArch.desc;
+  document.getElementById('r-traits').innerHTML=primaryArch.traits.map(t=>`<span class="dna-tag">${t}</span>`).join('');
+
+  // Secondary archetype block
+  const secEl = document.getElementById('r-secondary');
+  if(secEl){
+    secEl.innerHTML = `
+      <div style="background:var(--purple-mist);border:1px solid rgba(91,71,137,0.15);border-left:3px solid var(--purple);padding:20px 24px;margin:32px 0;">
+        <div style="font-family:var(--sans);font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-bottom:8px;">✦ Your Secondary Scent Profile</div>
+        <div style="font-family:var(--serif);font-weight:300;font-size:1.6rem;color:var(--navy);margin-bottom:4px;">${secondaryArch.label} <em style="font-style:italic;color:var(--purple)">${secondaryArch.em}</em></div>
+        <div style="font-family:var(--sans);font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:10px;">${secondaryArch.tagline}</div>
+        <div style="font-family:var(--serif);font-size:0.95rem;color:#555;line-height:1.8;">${secondaryArch.desc}</div>
+      </div>
+    `;
+  }
+
+  // Build recommendation cards
+  function recCard(pid, i, isSecondary){
     const p=getProduct(pid);
     if(!p)return'';
+    const romans=['I','II','III','IV','V'];
     const bottleHTML=p.bottles.map(b=>`
       <div class="bottle-row">
         <div class="bottle-house">${b.house}</div>
@@ -1160,8 +1258,9 @@ function buildResults(firstName,arch){
         <div class="bottle-vibe">${b.vibe}</div>
       </div>`).join('');
     return `<a class="rec-card" href="${p.url}" target="_blank">
-      <div class="rec-roman">${['I','II','III'][i]}</div>
+      <div class="rec-roman">${romans[i]}</div>
       <div class="rec-body">
+        ${isSecondary ? `<div style="font-family:var(--sans);font-size:0.5rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--purple);font-weight:300;margin-bottom:6px;">✦ Secondary Profile Pick</div>` : ''}
         <div class="rec-name">${p.name} <span class="rec-sub">${p.sub}</span></div>
         <div class="rec-type">${p.type} &nbsp;·&nbsp; ${p.price}</div>
         <div class="rec-desc">${p.desc}</div>
@@ -1169,7 +1268,28 @@ function buildResults(firstName,arch){
         <div class="rec-cta">Discover This Edit <span>→</span></div>
       </div>
     </a>`;
-  }).join('');
+  }
+
+  // Section label for primary recs
+  const primaryRecsHTML = `
+    <div style="display:flex;align-items:center;gap:16px;margin:32px 0 16px;">
+      <span style="font-family:var(--sans);font-size:0.54rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);font-weight:300;white-space:nowrap;">✦ Primary Profile · Curated for You</span>
+      <div style="flex:1;height:1px;background:rgba(91,71,137,0.1);"></div>
+    </div>
+    ${primaryPicks.map((pid,i)=>recCard(pid,i,false)).join('')}
+  `;
+
+  // Section label for secondary recs
+  const secondaryRecsHTML = `
+    <div style="display:flex;align-items:center;gap:16px;margin:32px 0 16px;">
+      <span style="font-family:var(--sans);font-size:0.54rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--purple);font-weight:300;white-space:nowrap;">✦ Secondary Profile · Also For You</span>
+      <div style="flex:1;height:1px;background:rgba(91,71,137,0.1);"></div>
+    </div>
+    ${secondaryPicks.map((pid,i)=>recCard(pid,i+3,true)).join('')}
+  `;
+
+  document.getElementById('r-recs').innerHTML = primaryRecsHTML + secondaryRecsHTML;
+
   if(firstName){
     const n=document.getElementById('sent-note');
     n.textContent=`Your results have been sent to your inbox, ${firstName}.`;
@@ -1186,9 +1306,26 @@ function showScreen(id){
 }
 
 function select(el,q,val){
-  document.querySelectorAll(`.q-step[data-q="${q}"] .opt`).forEach(o=>o.classList.remove('selected'));
+  const step = document.querySelector(`.q-step[data-q="${q}"]`);
+  const selected = step.querySelectorAll('.opt.selected');
+  // If already selected, deselect it
+  if(el.classList.contains('selected')){
+    el.classList.remove('selected');
+    answers[q] = answers[q].filter ? answers[q].filter(v=>v!==val) : null;
+    if(Array.isArray(answers[q]) && answers[q].length===0) answers[q]=null;
+    document.getElementById('btn-next').disabled = answers[q]===null || (Array.isArray(answers[q]) && answers[q].length===0);
+    return;
+  }
+  // Allow up to 2 selections
+  if(selected.length >= 2){
+    // Deselect the first one
+    selected[0].classList.remove('selected');
+    const oldVal = parseInt(selected[0].getAttribute('data-val'));
+    if(Array.isArray(answers[q])) answers[q] = answers[q].filter(v=>v!==oldVal);
+  }
   el.classList.add('selected');
-  answers[q]=val;
+  if(!Array.isArray(answers[q])) answers[q] = answers[q]!==null ? [answers[q]] : [];
+  answers[q].push(val);
   document.getElementById('btn-next').disabled=false;
 }
 
@@ -1202,13 +1339,15 @@ function updateProgress(){
   document.getElementById('btn-next-label').textContent=current===TOTAL-1?'See My Results':'Continue';
 }
 
-  function goNext(){
-  if(answers[current]===null)return;
+function goNext(){
+  const a = answers[current];
+  if(a===null || (Array.isArray(a) && a.length===0))return;
   if(current===TOTAL-1){showScreen('screen-email');return;}
   document.querySelectorAll('.q-step')[current].classList.remove('active');
   current++;
   document.querySelectorAll('.q-step')[current].classList.add('active');
-  document.getElementById('btn-next').disabled=answers[current]===null;
+  const na = answers[current];
+  document.getElementById('btn-next').disabled = na===null || (Array.isArray(na) && na.length===0);
   updateProgress();
 }
 
@@ -1230,7 +1369,7 @@ async function submitEmail(){
   if(!email||!email.includes('@')){err.style.display='block';return;}
   err.style.display='none';load.style.display='block';
   document.querySelector('.btn-reveal').disabled=true;
-  const arch=archetypes[getArchetype()];
+  const arch=archetypes[getArchetypes().primary];
   try{
     await fetch('https://a.klaviyo.com/client/subscriptions/?company_id=StQHsM',{
       method:'POST',
